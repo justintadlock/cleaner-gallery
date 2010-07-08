@@ -3,7 +3,7 @@
  * Plugin Name: Cleaner Gallery
  * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
  * Description: This plugin replaces the default gallery feature with a valid XHTML solution and offers support for multiple Lightbox-type image scripts.
- * Version: 0.7
+ * Version: 0.7.1
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
@@ -63,25 +63,11 @@
  */
 load_plugin_textdomain( 'cleaner_gallery', false, '/cleaner-gallery'  );
 
-/**
- * Make sure we get the correct directory.
- * @since 0.5
- */
-if ( !defined( 'WP_CONTENT_URL' ) )
-	define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
-if ( !defined( 'WP_CONTENT_DIR' ) )
-	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
-if ( !defined( 'WP_PLUGIN_URL' ) )
-	define('WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' );
-if ( !defined( 'WP_PLUGIN_DIR' ) )
-	define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
+/* Set constant path to the Cleaner Gallery plugin directory. */
+define( 'CLEANER_GALLERY_DIR', plugin_dir_path( __FILE__ ) );
 
-/**
- * Define constant paths to the plugin folder.
- * @since 0.5
- */
-define( CLEANER_GALLERY, WP_PLUGIN_DIR . '/cleaner-gallery' );
-define( CLEANER_GALLERY_URL, WP_PLUGIN_URL . '/cleaner-gallery' );
+/* Set constant path to the Cleaner Gallery plugin URL. */
+define( 'CLEANER_GALLERY_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Add the settings page to the admin menu.
@@ -94,14 +80,13 @@ add_action( 'admin_menu', 'cleaner_gallery_add_pages' );
  * @since 0.5
  */
 if ( is_admin() )
-	require_once( CLEANER_GALLERY . '/settings-admin.php' );
+	require_once( CLEANER_GALLERY_DIR . '/settings-admin.php' );
 
 /**
  * If not in the WP admin, load the settings from the database.
  * @since 0.5
  */
-if ( !is_admin() )
-	$cleaner_gallery = get_option( 'cleaner_gallery_settings' );
+$cleaner_gallery = get_option( 'cleaner_gallery_settings' );
 
 /**
  * We're going to filter the default gallery shortcode.
@@ -503,7 +488,7 @@ function cleaner_gallery_link_attributes( $id = 0 ) {
  * @since 0.5
  */
 function cleaner_gallery_add_pages() {
-	add_theme_page( __('Cleaner Gallery Settings', 'cleaner_gallery' ), __('Cleaner Gallery', 'cleaner_gallery'), 10, 'cleaner-gallery-settings.php', cleaner_gallery_theme_page );
+	add_theme_page( __('Cleaner Gallery Settings', 'cleaner_gallery' ), __('Cleaner Gallery', 'cleaner_gallery'), 'edit_theme_options', 'cleaner-gallery-settings.php', 'cleaner_gallery_theme_page' );
 }
 
 /**

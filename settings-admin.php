@@ -47,7 +47,7 @@ function cleaner_gallery_theme_page() {
 	$plugin_name = __('Cleaner Gallery', 'cleaner_gallery');
 	$settings_page_title = __('Cleaner Gallery Settings', 'cleaner_gallery');
 	$hidden_field_name = 'cleaner_gallery_submit_hidden';
-	$plugin_data = get_plugin_data(CLEANER_GALLERY . '/cleaner-gallery.php');
+	$plugin_data = get_plugin_data(CLEANER_GALLERY_DIR . '/cleaner-gallery.php');
 
 	/*
 	* Grabs the default plugin settings
@@ -81,7 +81,7 @@ function cleaner_gallery_theme_page() {
 	* If any information has been posted, we need
 	* to update the options in the database
 	*/
-	if ( $_POST[$hidden_field_name] == 'Y' ) :
+	if ( isset( $_POST[$hidden_field_name] ) && $_POST[$hidden_field_name] == 'Y' ) :
 
 		/*
 		* Loops through each option and sets it if needed
@@ -119,7 +119,7 @@ function cleaner_gallery_theme_page() {
 
 				<form name="form0" method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI'] ); ?>" style="border:none;background:transparent;">
 
-					<?php require_once( CLEANER_GALLERY . '/settings.php' ); ?>
+					<?php require_once( CLEANER_GALLERY_DIR . '/settings.php' ); ?>
 
 					<p class="submit" style="clear:both;">
 						<input type="submit" name="Submit"  class="button-primary" value="<?php _e('Save Changes', 'cleaner_gallery') ?>" />
