@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>A guide to the Cleaner Gallery plugin</title>
+
+<link rel="stylesheet" href="readme.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+<h1 title="A guide to using the Cleaner Gallery plugin">A guide to Cleaner Gallery</h1>
+
+<p><em>Cleaner Gallery</em> was written to take care of the invalid <acronym title="Extensible Hypertext Markup Language">XHTML</acronym> that WordPress produces when using the <code>[gallery]</code> shortcode.</p>
+
+<p>It does a bit more than that though.  It will integrate with many Lightbox-type scripts and allow you to do much cooler things with your galleries.  Plus, it has a couple of extra options that you can play around with.</p>
+
+<h2>How to install the plugin</h2>
+
+<ol>
+<li>Uzip the <code>cleaner-gallery.zip</code> folder.</li>
+<li>Upload the <code>cleaner-gallery</code> folder to your <code>/wp-content/plugins</code> directory.</li>
+<li>In your WordPress dashboard, head over to the <em>Plugins</em> section.</li>
+<li>Activate <em>Cleaner Gallery</em>.</li>
+</ol>
+
+<h2>How to use the plugin</h2>
+
+<p>Once you've activated the plugin, you don't have to do anything else for clean, valid <acronym title="Extensible Hypertext Markup Language">XHTML</acronym> galleries.</p>
+
+<p>However, there are a few options you can set.  Go to <em>Cleaner Gallery</em>, which is located under your <em>Appearance</em> menu in your WordPress dashboard.  From there, you'll see several settings to choose from.</p>
+
+<p>Oh yeah, you might want to know how to actually <a href="http://codex.wordpress.org/Using_the_gallery_shortcode" title="Using the [gallery] shortcode">use the gallery shortcode</a> as well.  I would say that's fairly important.</p>
+
+<h2>Gallery Settings</h2>
+
+<p>The <em>Image Link</em> setting will override the WordPress gallery link and allow you to link your images how you want.</p>
+
+<ul>
+	<li><strong>Attachment Page</strong> will make sure all of your images in galleries are linked to their attachment pages.</li>
+	<li><strong>Thumbnail</strong> will link your gallery images to the thumbnail view.</li>
+	<li><strong>Medium</strong> will link your gallery images to the medium-sized view.</li>
+	<li><strong>Large</strong> will link your gallery images to the large view.</li>
+	<li><strong>Full</strong> will link your gallery images to the full-sized view.</li>
+	<li><strong>No Link</strong> will display the image, but it will neither be linked to its attachment page nor the image.</li>
+	<li><strong>Leaving this setting blank</strong> will default to what you set in each gallery with the <code>link</code> argument.</li>
+</ul>
+
+<p>The <em>Captions</em> settings are pretty self-explanatory.  You can choose to remove all captions, use the image title when no caption is present, and/or link the captions to the image attachment page.</p>
+
+<p>The <em>Default Image Size</em>, <em>Default Order</em>, and <em>Default Orderby</em> allow you to select site-wide settings.  These can be overwritten on a post-by-post basis.</p>
+
+<h2>JavaScript Settings</h2>
+
+<p>I imagine this is the reason many of you downloaded the plugin.  It will integrate nicely with many different Lightbox-type scripts.  Here is the officially supported list.  This plugin has been tested and works with any of these.  </p>
+
+<p>To use one of these, you only need to load the appropriate JavaScript and/or <acronym title="Cascading Style Sheets">CSS</acronym> and select one from the <em>Image Script</em> drop-down box (<em>see below if your script is not listed here</em>).</p>
+
+<ul>
+	<li><a href="http://fancy.klade.lv" title="FancyBox">FancyBox</a></li>
+	<li><a href="http://www.cabel.name/2008/02/fancyzoom-10.html" title="FancyZoom">FancyZoom</a></li>
+	<li><a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a></li>
+	<li><a href="http://orangoo.com/labs/GreyBox" title="GreyBox">GreyBox</a></li>
+	<li><a href="http://github.com/krewenki/jquery-lightbox/tree/master" title="jQuery Lightbox">jQuery Lightbox</a></li>
+	<li><a href="http://leandrovieira.com/projects/jquery/lightbox" title="jQuery Lightbox Plugin">jQuery Lightbox Plugin</a></li>
+	<li><a href="http://www.balupton.com/sandbox/jquery_lightbox" title="jQuery Lightbox (balupton edition)">jQuery Lightbox Plugin (Balupton Edition)</a></li>
+	<li><a href="http://www.huddletogether.com/projects/lightbox2" title="Lightbox 2">Lightbox 2</a></li>
+	<li><a href=" http://www.nickstakenburg.com/projects/lightview/" title="Lightview">Lightview</a></li>
+	<li><a href="http://www.stickmanlabs.com/lightwindow" title="LightWindow">LightWindow</a></li>
+	<li><a href="http://dolem.com/lytebox/" title="Lytebox">Lytebox</a></li>
+	<li><a href="http://mjijackson.com/shadowbox/index.html" title="Shadowbox">Shadowbox</a></li>
+	<li><a href="http://www.digitalia.be/software/slimbox" title="Slimbox">Slimbox</a></li>
+	<li><a href="http://www.digitalia.be/software/slimbox2" title="Slimbox 2">Slimbox 2</a></li>
+	<li><a href="http://www.laptoptips.ca/projects/wp-shutter-reloaded" title="Shutter Reloaded">Shutter Reloaded</a></li>
+	<li><a href="http://jquery.com/demo/thickbox" title="Thickbox">Thickbox</a></li>
+</ul>
+
+<h2>Auto-loading Thickbox</h2>
+
+<p><em>Thickbox</em> is a script that is included with WordPress, so you have the option of doing nothing other than selecting a couple of checkboxes.</p>
+
+<p>That's it!  Choose <em>Thickbox</em> from the <em>Image Script</em> drop-down and check the <em>Thickbox</em> JavaScript and <acronym title="Cascading Style Sheets">CSS</acronym> boxes and look at your new galleries.</p>
+
+<h2>Using an alternate script</h2>
+
+<p>If you're using a Lightbox-type script that this plugin doesn't support yet, you should let me know.  I'll be happy to add the appropriate code.  Since it's usually a while between updates, I've added two input boxes for adding custom <code>class</code> and <code>rel</code> attributes to each gallery item.  Most Lightbox-type scripts require one or both.</p>
+
+<p>You might input something like <code>justinbox</code> in the <code>class</code> input box and <code>justinbox[gallery-id]</code> in the <code>rel</code> input box.</p>
+
+<p>Take note that by inputting <code>id</code> in either box, the gallery will automatically exchange that with a unique <acronym title="Identification">ID</acronym> so that you can have more than one gallery on a page (i.e. your blog's home page).</p>
+
+<h2>Customize your gallery style</h2>
+
+<p>Customizing your galleries can be very simple.  Here's some <acronym title="Cascading Style Sheets">CSS</acronym> you can apply to your theme's <code>style.css</code> file.</p>
+
+<pre><code>.gallery {
+	/* Style rules for the entire gallery */
+	}
+.gallery-item {
+	/* Style rules for each item (image and caption) in the gallery */
+	}
+.gallery-icon {
+	/* Style rules for images within the gallery */
+	}
+.gallery-caption {
+	/* Style rules for captions within the gallery */
+	}</code></pre>
+
+<p>You can also style individual galleries.  All you need to do is figure out the <acronym title="Identification">ID</acronym> of the particular post the gallery is for.  So, you could style the gallery for post <code>95</code> like so:</p>
+
+<pre><code>#gallery-95 {
+	/* Style rules specifically for the gallery associated with post ID of 95 */
+	}</code></pre>
+
+<h2>Load a completely custom stylesheet</h2>
+
+<p>If you want even more control over your gallery style, you could get rid of the default stylesheet and load your own.  So, what you'd do first is add this to your theme's <code>functions.php</code> file:</p>
+
+<pre><code>&lt;?php remove_action( 'wp_head', 'cleaner_gallery_css' ); ?&gt;</code></pre>
+
+<p>This will disable the default gallery styling.  You could then create completely custom style rules.  A good place to start would be copying the contents of <code>cleaner-gallery.css</code> into your theme's <code>style.css</code> and altering bits and pieces at a time.</p>
+
+<h2>Plugin support</h2>
+
+<p>I run a WordPress community called <a href="http://themehybrid.com" title="Theme Hybrid">Theme Hybrid</a>, which is where I fully support all of my WordPress projects, including plugins.  You can sign up for an account to get plugin support for a small yearly fee ($25 <acronym title="United States Dollars">USD</acronym> at the time of writing).</p>
+
+<p>I know.  I know.  You might not want to pay for support, but just consider it a donation to the project.  To continue making cool, <acronym title="GNU General Public License">GPL</acronym>-licensed plugins and having the time to support them, I must pay the bills.</p>
+
+<h2>Copyright &amp; license</h2>
+
+<p><em>Cleaner Gallery</em> is licensed under the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" title="GNU GPL">GNU General Public License</a>, version 2 (<acronym title="GNU General Public License">GPL</acronym>).</p>
+
+<p>This plugin is copyrighted to <a href="http://justintadlock.com" title="Justin Tadlock">Justin Tadlock</a>.</p>
+
+<p>2008&thinsp;&ndash;&thinsp;2009 &copy; Justin Tadlock</p>
+
+</body>
+</html>
