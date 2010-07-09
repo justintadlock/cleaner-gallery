@@ -228,8 +228,8 @@ function cleaner_gallery_shortcode( $output, $attr ) {
 	foreach ( $attachments as $id => $attachment ) :
 
 		/* Get the caption and title. */
-		$caption = wp_specialchars( $attachment->post_excerpt, 1 );
-		$title = wp_specialchars( $attachment->post_title, 1 );
+		$caption = esc_html( $attachment->post_excerpt );
+		$title = esc_attr( $attachment->post_title );
 		if ( !$caption && $cleaner_gallery['caption_title'] )
 			$caption = $title;
 		if ( $cleaner_gallery['caption_remove'] )
