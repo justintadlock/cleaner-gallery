@@ -3,8 +3,8 @@ Contributors: greenshady
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3687060
 Tags: gallery, lightbox, slimbox, images, jquery, fancybox, shadowbox, thickbox, valid-xhtml
 Requires at least: 2.6
-Tested up to: 2.8
-Stable tag: 0.7
+Tested up to: 3.0
+Stable tag: 0.8
 
 A cleaner WordPress [gallery] that integrates with multiple Lightbox-type scripts.
 
@@ -23,7 +23,7 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 * Ability to exclude or include any images from your gallery.
 * Doesn't load any JavaScript unless you choose to do so.
 
-**Integrates with 16 different Lightbox-type scripts:**
+**Integrates with 17 different Lightbox-type scripts:**
 
 1. <a href="http://www.huddletogether.com/projects/lightbox2/" title="Lightbox 2">Lightbox 2</a>
 1. <a href="http://www.digitalia.be/software/slimbox" title="Slimbox">Slimbox</a>
@@ -41,6 +41,7 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 1. <a href="http://www.stickmanlabs.com/lightwindow" title="LightWindow">LightWindow</a>
 1. <a href="http://www.cabel.name/2008/02/fancyzoom-10.html" title="FancyZoom">FancyZoom</a>
 1. <a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a>
+1. <a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a>
 
 == Installation ==
 
@@ -76,6 +77,7 @@ The plugin has been tested and works with these scripts:
 1. <a href="http://www.stickmanlabs.com/lightwindow" title="LightWindow">LightWindow</a>
 1. <a href="http://www.cabel.name/2008/02/fancyzoom-10.html" title="FancyZoom">FancyZoom</a>
 1. <a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a>
+1. <a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a>
 
 = How do I set it up? =
 
@@ -88,6 +90,21 @@ If you need a more detailed guide, see `readme.html`, which is included with the
 Screenshots and a demo can be found on the <a href="http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin" title="Cleaner Gallery">Cleaner Gallery plugin page</a>.
 
 == Changelog ==
+
+** Version 0.8**
+
+* Important! Users sould re-save their settings after updating to version 0.8.
+* Completely recoded the plugin from the ground up for a much needed code overhaul.
+* Added support for the <a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a> script.
+* Added the `cleaner_gallery_image_link_class` filter hook.
+* Added the `cleaner_gallery_image_link_rel` filter hook.
+* Removed the link class and rel options in the admin for the more robust filter hooks.
+* Changed the Image Link option to the Default Image Link option, which allows users to always override this setting on a per-post basis.
+* Recognizes custom image sizes created using the `add_image_size()` WordPress function.
+* Split the plugin into new files so that specific parts of the code are only loaded when needed.
+* Changed the settings page to fully support the screen options and meta box functionality of WordPress.
+* Moved translations to the `/languages` folder.
+* Added the `offset` argument so that users could more easily make paginated galleries.
 
 **Version 0.7**
 

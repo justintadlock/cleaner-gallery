@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1 title="A guide to using the Cleaner Gallery plugin">A guide to Cleaner Gallery</h1>
+<h1>A guide to Cleaner Gallery</h1>
 
 <p><em>Cleaner Gallery</em> was written to take care of the invalid <acronym title="Extensible Hypertext Markup Language">XHTML</acronym> that WordPress produces when using the <code>[gallery]</code> shortcode.</p>
 
@@ -34,29 +34,28 @@
 
 <h2>Gallery Settings</h2>
 
-<p>The <em>Image Link</em> setting will override the WordPress gallery link and allow you to link your images how you want.</p>
+<p>The <em>Captions</em> settings are pretty self-explanatory.  You can choose to remove all captions, use the image title when no caption is present, and/or link the captions to the image attachment page.</p>
+
+<p>The <em>Default Image Link</em> setting will override the default WordPress gallery link and allow you to link your images how you want.  Note that you can also change this on a per-post basis.</p>
 
 <ul>
-	<li><strong>Attachment Page</strong> will make sure all of your images in galleries are linked to their attachment pages.</li>
-	<li><strong>Thumbnail</strong> will link your gallery images to the thumbnail view.</li>
-	<li><strong>Medium</strong> will link your gallery images to the medium-sized view.</li>
-	<li><strong>Large</strong> will link your gallery images to the large view.</li>
-	<li><strong>Full</strong> will link your gallery images to the full-sized view.</li>
-	<li><strong>No Link</strong> will display the image, but it will neither be linked to its attachment page nor the image.</li>
-	<li><strong>Leaving this setting blank</strong> will default to what you set in each gallery with the <code>link</code> argument.</li>
+	<li><strong>Blank:</strong> Don't let the plugin change the defaults.</li>
+	<li><strong>Attachment Page:</strong> Will make sure all of your images in galleries are linked to their attachment pages.</li>
+	<li><strong>Thumbnail, Medium, etc.:</strong> WordPress and custom image sizes to link gallery images to.</li>
+	<li><strong>Full:</strong> will link your gallery images to the full-sized view.</li>
+	<li><strong>None:</strong> will display the image, but it will neither be linked to its attachment page nor the image.</li>
 </ul>
-
-<p>The <em>Captions</em> settings are pretty self-explanatory.  You can choose to remove all captions, use the image title when no caption is present, and/or link the captions to the image attachment page.</p>
 
 <p>The <em>Default Image Size</em>, <em>Default Order</em>, and <em>Default Orderby</em> allow you to select site-wide settings.  These can be overwritten on a post-by-post basis.</p>
 
 <h2>JavaScript Settings</h2>
 
-<p>I imagine this is the reason many of you downloaded the plugin.  It will integrate nicely with many different Lightbox-type scripts.  Here is the officially supported list.  This plugin has been tested and works with any of these.  </p>
+<p>I imagine this is the reason many of you downloaded the plugin.  It will integrate nicely with many different Lightbox-type scripts.  Here is the officially supported list.  This plugin has been tested and works with any of these.</p>
 
 <p>To use one of these, you only need to load the appropriate JavaScript and/or <acronym title="Cascading Style Sheets">CSS</acronym> and select one from the <em>Image Script</em> drop-down box (<em>see below if your script is not listed here</em>).</p>
 
 <ul>
+	<li><a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a></li>
 	<li><a href="http://fancy.klade.lv" title="FancyBox">FancyBox</a></li>
 	<li><a href="http://www.cabel.name/2008/02/fancyzoom-10.html" title="FancyZoom">FancyZoom</a></li>
 	<li><a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a></li>
@@ -65,7 +64,7 @@
 	<li><a href="http://leandrovieira.com/projects/jquery/lightbox" title="jQuery Lightbox Plugin">jQuery Lightbox Plugin</a></li>
 	<li><a href="http://www.balupton.com/sandbox/jquery_lightbox" title="jQuery Lightbox (balupton edition)">jQuery Lightbox Plugin (Balupton Edition)</a></li>
 	<li><a href="http://www.huddletogether.com/projects/lightbox2" title="Lightbox 2">Lightbox 2</a></li>
-	<li><a href=" http://www.nickstakenburg.com/projects/lightview/" title="Lightview">Lightview</a></li>
+	<li><a href="http://www.nickstakenburg.com/projects/lightview/" title="Lightview">Lightview</a></li>
 	<li><a href="http://www.stickmanlabs.com/lightwindow" title="LightWindow">LightWindow</a></li>
 	<li><a href="http://dolem.com/lytebox/" title="Lytebox">Lytebox</a></li>
 	<li><a href="http://mjijackson.com/shadowbox/index.html" title="Shadowbox">Shadowbox</a></li>
@@ -83,11 +82,21 @@
 
 <h2>Using an alternate script</h2>
 
-<p>If you're using a Lightbox-type script that this plugin doesn't support yet, you should let me know.  I'll be happy to add the appropriate code.  Since it's usually a while between updates, I've added two input boxes for adding custom <code>class</code> and <code>rel</code> attributes to each gallery item.  Most Lightbox-type scripts require one or both.</p>
+<p>If you're using a Lightbox-type script that this plugin doesn't support yet, you should let me know.  I'll be happy to add the appropriate code.  Since it's usually a while between updates, you'll have to manually add support until the plugin can be updated.</p>
 
-<p>You might input something like <code>justinbox</code> in the <code>class</code> input box and <code>justinbox[gallery-id]</code> in the <code>rel</code> input box.</p>
+<p>Most Lightbox-style scripts require a custom <code>class</code> and/or <code>rel</code> attribute.  To make custom ones, you can add this to your theme's <code>functions.php</code>:</p>
 
-<p>Take note that by inputting <code>id</code> in either box, the gallery will automatically exchange that with a unique <acronym title="Identification">ID</acronym> so that you can have more than one gallery on a page (i.e. your blog's home page).</p>
+<pre><code>add_filter( 'cleaner_gallery_image_link_class', 'my_gallery_image_link_class' );
+
+function my_gallery_image_link_class( $class ) {
+	return 'custom-class';
+}
+
+add_filter( 'cleaner_gallery_image_link_rel', 'my_gallery_image_link_rel' );
+
+function my_gallery_image_link_rel( $rel ) {
+	return 'custom-rel';
+}</code></pre>
 
 <h2>Customize your gallery style</h2>
 
@@ -116,9 +125,25 @@
 
 <p>If you want even more control over your gallery style, you could get rid of the default stylesheet and load your own.  So, what you'd do first is add this to your theme's <code>functions.php</code> file:</p>
 
-<pre><code>&lt;?php remove_action( 'wp_head', 'cleaner_gallery_css' ); ?&gt;</code></pre>
+<pre><code>add_action( 'wp_print_scripts', 'my_deregister_styles' );
+
+function my_deregister_styles() {
+	wp_deregister_style( 'cleaner-gallery' );
+}</code></pre>
 
 <p>This will disable the default gallery styling.  You could then create completely custom style rules.  A good place to start would be copying the contents of <code>cleaner-gallery.css</code> into your theme's <code>style.css</code> and altering bits and pieces at a time.</p>
+
+<h2>Creating a paginated gallery</h2>
+
+<p>While the plugin has no way of paginating its own galleries, it's very much possible to make this happen using the WordPress <code>&lt;!--nextpage--></code> tag.</p>
+
+<p>Let's suppose we have 12 images we want to show.  The first six will be on the first page while the following six will be on the second page.  You'd use this code in the post editor:</p>
+
+<pre><code>[gallery numberposts="6"]
+
+&lt;!--nextpage-->
+
+[gallery numberposts="6" offset="6"]</code></pre>
 
 <h2>Plugin support</h2>
 
@@ -132,7 +157,7 @@
 
 <p>This plugin is copyrighted to <a href="http://justintadlock.com" title="Justin Tadlock">Justin Tadlock</a>.</p>
 
-<p>2008&thinsp;&ndash;&thinsp;2009 &copy; Justin Tadlock</p>
+<p>2008&thinsp;&ndash;&thinsp;2010 &copy; Justin Tadlock.  All rights reserved.</p>
 
 </body>
 </html>
