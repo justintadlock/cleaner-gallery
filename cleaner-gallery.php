@@ -37,6 +37,7 @@
  * @link http://www.cabel.name/2008/02/fancyzoom-10.html
  * @link http://randomous.com/floatbox/home
  * @link http://colorpowered.com/colorbox
+ * @link http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone
  *
  * @copyright 2008 - 2010
  * @version 0.8

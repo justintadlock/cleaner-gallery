@@ -328,6 +328,11 @@ function cleaner_gallery_link_attributes( $id = 0 ) {
 			$rel = "shadowbox[cleaner-gallery-{$id}]";
 			break;
 
+		case 'pretty_photo' :
+			$class = 'prettyPhoto';
+			$rel = "prettyPhoto[{$id}]";
+			break;
+
 		case 'fancyzoom' :
 		default :
 			$class = '';

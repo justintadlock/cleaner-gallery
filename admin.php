@@ -260,6 +260,7 @@ function cleaner_gallery_javascript_meta_box() {
 		'lightview' => __( 'Lightview', 'cleaner-gallery' ), 
 		'lightwindow' => __( 'LightWindow', 'cleaner-gallery' ), 
 		'lytebox' => __( 'Lytebox', 'cleaner-gallery' ), 
+		'pretty_photo' => __( 'prettyPhoto', 'cleaner-gallery' ), 
 		'shadowbox' => __( 'Shadowbox', 'cleaner-gallery' ), 
 		'shutter_reloaded' => __( 'Shutter Reloaded', 'cleaner-gallery' ), 
 		'slimbox' => __( 'Slimbox', 'cleaner-gallery' ), 
