@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Cleaner Gallery WordPress Plugin 0.7\n"
+"Project-Id-Version: Cleaner Gallery WordPress Plugin 0.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-09 15:00+0900\n"
+"POT-Creation-Date: 2010-07-24 18:42-0600\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Aris Papatheodorou <aris@samizdat.net>\n"
+"Last-Translator: Aris <aris@samizdat.net>\n"
 "Language-Team: Aris Papathéodorou <aris@papatheodorou.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,170 +16,254 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: cleaner-gallery.php:404
-#: settings-admin.php:21
-#: settings.php:57
-msgid "Attachment Page"
-msgstr "Page de l'image"
-
-#: cleaner-gallery.php:410
-#: settings.php:62
-msgid "No Link"
-msgstr "Aucun lien"
-
-#: cleaner-gallery.php:418
-#: settings.php:61
-msgid "Full"
-msgstr "Image originale"
-
-#: cleaner-gallery.php:421
-#: settings.php:60
-msgid "Large"
-msgstr "Image de grande taille"
-
-#: cleaner-gallery.php:424
-#: settings.php:59
-msgid "Medium"
-msgstr "Image de taille moyenne"
-
-#: cleaner-gallery.php:427
-#: settings.php:58
-msgid "Thumbnail"
-msgstr "Vignette"
-
-#: cleaner-gallery.php:518
-#: settings-admin.php:48
-msgid "Cleaner Gallery Settings"
-msgstr "Options pour Cleaner Gallery"
-
 # S'affiche dans la colonne de navigation sous “Apparence”
-#: cleaner-gallery.php:518
-#: settings-admin.php:47
+#: admin.php:32
 msgid "Cleaner Gallery"
 msgstr "Galerie"
 
-#: settings-admin.php:107
-msgid "Settings saved."
-msgstr "Configuration enregistrée"
+#: admin.php:134
+msgid "About Cleaner Gallery"
+msgstr "A propos de Cleaner Gallery"
 
-#: settings-admin.php:125
-msgid "Save Changes"
-msgstr "Enregistrer"
-
-#: settings.php:15
-msgid "About This Plugin"
-msgstr "A propos de ce plugin"
-
-#: settings.php:21
-msgid "Plugin Description:"
-msgstr "Description&nbsp;:"
-
-#: settings.php:25
-msgid "Plugin Version:"
-msgstr "Version&nbsp;:"
-
-#: settings.php:29
-msgid "Plugin Documentation:"
-msgstr "Documentation&nbsp;:"
-
-#: settings.php:30
-msgid "Read the <code>readme.html</code> file included with the plugin to see how this plugin works."
-msgstr "Lire le fichier<code>readme.html</code> contenu dans le paquet pour plus d'informations sur le fonctionnement de ce plugin."
-
-#: settings.php:33
-msgid "Plugin Support:"
-msgstr "Aide&nbsp;:"
-
-#: settings.php:34
-msgid "Get support for this plugin"
-msgstr "Obtenir de l'aide pour ce plugin."
-
-#: settings.php:34
-msgid "Visit the support forums."
-msgstr "Aller sur le forum d'aide."
-
-#: settings.php:43
+#: admin.php:136
 msgid "Gallery Settings"
 msgstr "Paramètres des galeries"
 
-#: settings.php:50
-msgid "Image Link:"
-msgstr "Liens des images&nbsp;:"
-
-# Revoir
-#: settings.php:53
-msgid "Where or what should your gallery images link to?  Leave blank to control on a post-by-post basis."
-msgstr "Cible des liens des images de la galerie. Laisser blanc pour déterminer librement pour chaque article."
-
-#: settings.php:69
-msgid "Captions:"
-msgstr "Légendes&nbsp;:"
-
-#: settings.php:74
-msgid "Do you want to remove captions from your galleries?"
-msgstr "Voulez-vous supprimer les légendes&nbsp;?"
-
-#: settings.php:79
-msgid "Use the image title as a caption if there is no caption available?"
-msgstr "Utiliser le titre de l'image en cas d'absence de légende&nbsp;?"
-
-#: settings.php:84
-msgid "Link captions to the image attachment page?"
-msgstr "Lier la légende à la page de l'image&nbsp;?"
-
-#: settings.php:91
-msgid "Default Image Size:"
-msgstr "Taille par défaut de l'image&nbsp;:"
-
-#: settings.php:105
-msgid "Default Order:"
-msgstr "Classement par défaut&nbsp;:"
-
-#: settings.php:117
-msgid "Default Orderby:"
-msgstr "Tri par défaut&nbsp;:"
-
-#: settings.php:136
+#: admin.php:138
 msgid "JavaScript Settings"
 msgstr "Paramètres JavaScript&nbsp;:"
 
-#: settings.php:141
-msgid "About"
+#: admin.php:151
+msgid "Plugin:"
+msgstr "Plugin&nbsp;:"
+
+#: admin.php:155
+msgid "Author:"
+msgstr "Auteur&nbsp;:"
+
+#: admin.php:159
+msgid "Description:"
+msgstr "Description&nbsp;:"
+
+#: admin.php:175
+#: admin.php:233
+msgid "None"
+msgstr "Auncun(e)"
+
+#: admin.php:175
+msgid "Attachment Page"
+msgstr "Page de l'image"
+
+#: admin.php:181
+msgid "Captions:"
+msgstr "Légendes&nbsp;:"
+
+#: admin.php:184
+msgid "Do you want to remove captions from your galleries?"
+msgstr "Voulez-vous supprimer les légendes&nbsp;?"
+
+#: admin.php:187
+msgid "Use the image title as a caption if there is no caption available?"
+msgstr "Utiliser le titre de l'image en cas d'absence de légende&nbsp;?"
+
+#: admin.php:190
+msgid "Link captions to the image attachment page?"
+msgstr "Lier la légende à la page de l'image&nbsp;?"
+
+#: admin.php:195
+msgid "Default Image Link:"
+msgstr "Lien par défaut pour les images&nbsp;:"
+
+# Revoir
+#: admin.php:197
+msgid "Where or what should your gallery images link to?  Leave blank for the WordPress default."
+msgstr "Cible des liens des images de la galerie. Laisser blanc pour déterminer librement pour chaque article."
+
+#: admin.php:208
+msgid "Default Image Size:"
+msgstr "Taille par défaut de l'image&nbsp;:"
+
+#: admin.php:219
+msgid "Default Order:"
+msgstr "Classement par défaut&nbsp;:"
+
+#: admin.php:230
+msgid "Default Orderby:"
+msgstr "Tri par défaut&nbsp;:"
+
+#: admin.php:233
+msgid "Comment Count"
+msgstr "Nombre de commentaires"
+
+#: admin.php:233
+msgid "Date"
+msgstr "Date"
+
+#: admin.php:233
+msgid "ID"
+msgstr "ID"
+
+#: admin.php:233
+msgid "Menu Order"
+msgstr "Ordre pour le menu"
+
+#: admin.php:233
+msgid "Random"
+msgstr "Aléatoire"
+
+#: admin.php:233
+msgid "Title"
+msgstr "Titre"
+
+#: admin.php:251
+msgid "Colorbox"
+msgstr "Colorbox"
+
+#: admin.php:252
+msgid "FancyBox"
+msgstr "FancyBox"
+
+#: admin.php:253
+msgid "FancyZoom"
+msgstr "FancyZoom"
+
+#: admin.php:254
+msgid "Floatbox"
+msgstr "Floatbox"
+
+#: admin.php:255
+msgid "GreyBox"
+msgstr "GreyBox"
+
+#: admin.php:256
+msgid "jQuery Lightbox"
+msgstr "jQuery Lightbox"
+
+#: admin.php:257
+msgid "jQuery Lightbox Plugin"
+msgstr "jQuery Lightbox Plugin"
+
+#: admin.php:258
+msgid "jQuery Lightbox (Balupton)"
+msgstr "jQuery Lightbox (Balupton)"
+
+#: admin.php:259
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: admin.php:260
+msgid "Lightview"
+msgstr "Lightview"
+
+#: admin.php:261
+msgid "LightWindow"
+msgstr "LightWindow"
+
+#: admin.php:262
+msgid "Lytebox"
+msgstr "Lytebox"
+
+#: admin.php:263
+msgid "Shadowbox"
+msgstr "Shadowbox"
+
+#: admin.php:264
+msgid "Shutter Reloaded"
+msgstr "Shutter Reloaded"
+
+#: admin.php:265
+msgid "Slimbox"
+msgstr "Slimbox"
+
+#: admin.php:266
+msgid "Thickbox"
+msgstr "Thickbox"
+
+#: admin.php:270
+msgid "About:"
 msgstr "A propos"
 
-#: settings.php:143
-msgid "If you are using a Lightbox-type image script, this plugin will work along with it.  There are several supported scripts at this time.  There's also the option of manually inputting the <code>class</code> and/or <code>rel</code> tags if you're using an unsupported script.  If you have suggestions for others, please let me know."
-msgstr "Si vous utilisez un script de type Lightbox, ce plugin peut fonctionner avec celui-ci. Il y a plusieurs scripts supporté à ce jour. Il est aussi possible d'ajouter manuellement les tags <code>class</code> et/ou <code>rel</code> si vous utilisez un script qui n'est pas dans la liste. Si vous avez des suggestion pour d'autres script, faites le moi savoir."
+#: admin.php:272
+msgid "If you are using a Lightbox-type image script, this plugin will work along with it.  There are several supported scripts to choose from."
+msgstr "Si vous utilisez un script de type ligthbox, ce plugin l'utilisera. Vous pouvez choisir entre un certains nombre de scripts supportés."
 
-#: settings.php:149
+#: admin.php:276
 msgid "Image Script:"
 msgstr "Script&nbsp;:"
 
-#: settings.php:167
-msgid "Choose the image script you've installed from the list."
-msgstr "Choisir dans la liste le script pour les images que vous avez installé."
-
-#: settings.php:173
+#: admin.php:286
 msgid "Thickbox:"
 msgstr "Thickbox&nbsp;:"
 
-#: settings.php:178
+#: admin.php:289
 msgid "Auto-load Thickbox JavaScript (included with WordPress)?"
 msgstr "Charger automatiquement le fichier JavaScript de Thickbox (inclus dans WordPress)&nbsp;?"
 
-#: settings.php:183
+#: admin.php:292
 msgid "Auto-load Thickbox CSS (included with WordPress)?"
 msgstr "Charger automatiquement le fichier CSS de Thickbox (inclus dans WordPress)&nbsp;?"
 
-#: settings.php:190
-msgid "Alternate Script:"
-msgstr "Script alternatif&nbsp;:"
+#: admin.php:305
+msgid "Settings saved."
+msgstr "Configuration enregistrée"
 
-#: settings.php:194
-msgid "Input a custom class attribute."
-msgstr "Ajouter un attribut <code>class</code> personnalisé."
+#: admin.php:321
+msgid "Cleaner Gallery Settings"
+msgstr "Options pour Cleaner Gallery"
 
-#: settings.php:197
-msgid "Input a custom rel attribute."
-msgstr "Ajouter un attribut <code>rel</code> personnalisé."
+#: admin.php:340
+msgid "Update Settings"
+msgstr "Modifier les paramètres"
+
+#~ msgid "No Link"
+#~ msgstr "Aucun lien"
+#~ msgid "Full"
+#~ msgstr "Image originale"
+#~ msgid "Large"
+#~ msgstr "Image de grande taille"
+#~ msgid "Medium"
+#~ msgstr "Image de taille moyenne"
+#~ msgid "Thumbnail"
+#~ msgstr "Vignette"
+#~ msgid "Save Changes"
+#~ msgstr "Enregistrer"
+#~ msgid "About This Plugin"
+#~ msgstr "A propos de ce plugin"
+#~ msgid "Plugin Documentation:"
+#~ msgstr "Documentation&nbsp;:"
+#~ msgid ""
+#~ "Read the <code>readme.html</code> file included with the plugin to see "
+#~ "how this plugin works."
+#~ msgstr ""
+#~ "Lire le fichier<code>readme.html</code> contenu dans le paquet pour plus "
+#~ "d'informations sur le fonctionnement de ce plugin."
+#~ msgid "Plugin Support:"
+#~ msgstr "Aide&nbsp;:"
+#~ msgid "Get support for this plugin"
+#~ msgstr "Obtenir de l'aide pour ce plugin."
+#~ msgid "Visit the support forums."
+#~ msgstr "Aller sur le forum d'aide."
+#~ msgid "Image Link:"
+#~ msgstr "Liens des images&nbsp;:"
+#~ msgid ""
+#~ "If you are using a Lightbox-type image script, this plugin will work "
+#~ "along with it.  There are several supported scripts at this time.  "
+#~ "There's also the option of manually inputting the <code>class</code> and/"
+#~ "or <code>rel</code> tags if you're using an unsupported script.  If you "
+#~ "have suggestions for others, please let me know."
+#~ msgstr ""
+#~ "Si vous utilisez un script de type Lightbox, ce plugin peut fonctionner "
+#~ "avec celui-ci. Il y a plusieurs scripts supporté à ce jour. Il est aussi "
+#~ "possible d'ajouter manuellement les tags <code>class</code> et/ou "
+#~ "<code>rel</code> si vous utilisez un script qui n'est pas dans la liste. "
+#~ "Si vous avez des suggestion pour d'autres script, faites le moi savoir."
+#~ msgid "Choose the image script you've installed from the list."
+#~ msgstr ""
+#~ "Choisir dans la liste le script pour les images que vous avez installé."
+#~ msgid "Alternate Script:"
+#~ msgstr "Script alternatif&nbsp;:"
+#~ msgid "Input a custom class attribute."
+#~ msgstr "Ajouter un attribut <code>class</code> personnalisé."
+#~ msgid "Input a custom rel attribute."
+#~ msgstr "Ajouter un attribut <code>rel</code> personnalisé."
 
