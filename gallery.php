@@ -92,9 +92,10 @@ function cleaner_gallery_shortcode( $output, $attr ) {
 	}
 
 	/* Set up some important variables. */
+	$attachment_count = count( $attachments );
 	$itemtag = tag_escape( $itemtag );
 	$captiontag = tag_escape( $captiontag );
-	$columns = intval( $columns );
+	$columns = ( ( $columns <= $attachment_count ) ? intval( $columns ) : intval( $attachment_count ) );
 	$itemwidth = $columns > 0 ? floor( 100 / $columns ) : 100;
 	$i = 0;
 
