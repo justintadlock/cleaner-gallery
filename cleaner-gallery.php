@@ -265,7 +265,7 @@ function cleaner_gallery_enqueue_style() {
 		wp_enqueue_style( 'thickbox' );
 
 	if ( cleaner_gallery_get_setting( 'cleaner_gallery_css' ) )
-		wp_enqueue_style( 'cleaner-gallery', CLEANER_GALLERY_URL . 'cleaner-gallery.css', false, 0.8, 'all' );
+		wp_enqueue_style( 'cleaner-gallery', CLEANER_GALLERY_URL . 'gallery.css', false, 0.9, 'all' );
 }
 
 /**
