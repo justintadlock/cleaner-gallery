@@ -30,7 +30,7 @@ add_filter( 'post_gallery', 'cleaner_gallery', 10, 2 );
  * HTML and inline styles.  It adds the number of columns used as a class attribute, which allows 
  * developers to style the gallery more easily.
  *
- * @since 0.9
+ * @since 0.9.0
  * @param string $output
  * @param array $attr
  * @return string $output

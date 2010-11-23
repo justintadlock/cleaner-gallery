@@ -1,37 +1,73 @@
 <?php
+/**
+ * Cleaner Gallery plugin settings page.  This page is added to the themes page ("Appearance") in the 
+ * WordPress admin rather than as a sub-item for another section in the admin.  It deals with the 
+ * appearance of the site.
+ *
+ * @package CleanerGallery
+ */
 
+/* Add the settings page. */
 add_action( 'admin_menu', 'cleaner_gallery_add_settings_page' );
+
+/* Register the plugin settings. */
 add_action( 'admin_init', 'cleaner_gallery_register_settings' );
 
+/**
+ * Adds the settings page to the themes menu in the WordPress admin.
+ *
+ * @since 0.9.0
+ */
 function cleaner_gallery_add_settings_page() {
-	global $cleaner_gallery;
-
-	/* Create the theme settings page. */
-	$cleaner_gallery->settings_page = add_theme_page( __( 'Cleaner Gallery', 'cleaner-gallery' ), __( 'Cleaner Gallery', 'cleaner-gallery' ), 'edit_theme_options', 'cleaner-gallery', 'cleaner_gallery_settings_page' );
+	add_theme_page( __( 'Cleaner Gallery', 'cleaner-gallery' ), __( 'Cleaner Gallery', 'cleaner-gallery' ), 'edit_theme_options', 'cleaner-gallery', 'cleaner_gallery_settings_page' );
 }
 
+/**
+ * Registers the cleaner gallery settings with WordPress.
+ *
+ * @since 0.9.0
+ */
 function cleaner_gallery_register_settings() {
 	register_setting( 'cleaner_gallery_settings', 'cleaner_gallery_settings', 'cleaner_gallery_validate_settings' );
 }
 
+/**
+ * Validates/sanitizes the plugins settings after they've been submitted.
+ *
+ * @since 0.9.0
+ * @todo Validation of individual settings.
+ */
 function cleaner_gallery_validate_settings( $input ) {
 	return $input;
 }
 
+/**
+ * Displays the settings page for the plugin.
+ *
+ * @since 0.9.0
+ */
 function cleaner_gallery_settings_page() {
 
-	foreach ( get_intermediate_image_sizes() as $size )
-		$image_sizes[$size] = $size;
-
-	$image_link = array_merge( array( 'none' => '', '' => __( 'Attachment Page' ), 'file' => 'full' ), $image_sizes );
-
+	/* Set up some default empty variables. */
 	$size_field = '';
 	$image_link_field = '';
 	$orderby_field = '';
 	$order_field = '';
+
+	/* Get the available image sizes. */
+	foreach ( get_intermediate_image_sizes() as $size )
+		$image_sizes[$size] = $size;
+
+	/* Set up an array items that gallery items can link to. */
+	$image_link = array_merge( array( 'none' => '', '' => __( 'Attachment Page' ), 'file' => 'full' ), $image_sizes );
+
+	/* Set up an array of orderby options. */
 	$orderby_options = array( 'comment_count' => __( 'Comment Count', 'cleaner-gallery' ), 'date' => __( 'Date', 'cleaner-gallery' ), 'ID' => __( 'ID', 'cleaner-gallery' ), 'menu_order' => __( 'Menu Order', 'cleaner-gallery' ), 'none' => __( 'None', 'cleaner-gallery' ), 'rand' => __( 'Random', 'cleaner-gallery' ), 'title' => __( 'Title', 'cleaner-gallery' ) );
+
+	/* Set up an array of ordering options. */
 	$order_options = array( 'ASC' => __( 'Ascending', 'cleaner-gallery' ), 'DESC' => __( 'Descending', 'cleaner_gallery' ) );
 
+	/* Set up an array of supported Lightbox-type scripts the plugin supports. */
 	$scripts = array( 
 		'' => '', 
 		'colorbox' => __( 'Colorbox', 'cleaner-gallery' ), 
@@ -146,13 +182,13 @@ function cleaner_gallery_settings_page() {
 						<span class="description"><?php _e( 'The use, installation, and configuration of third-party image scripts are not supported by the Cleaner Gallery plugin developer. Please contact the image script developer for help using your preferred script.', 'cleaner-gallery' ); ?></span>
 					</td>
 				</tr>
-
 			</table>
 
-			<?php submit_button(); ?>
+			<p class="submit" style="clear: both;">
+				<input type="submit" name="Submit"  class="button-primary" value="<?php esc_attr_e( 'Update Settings', 'cleaner-gallery' ); ?>" />
+			</p><!-- .submit -->
 		</form>
 	</div>
 <?php }
-
 
 ?>

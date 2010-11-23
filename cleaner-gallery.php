@@ -3,7 +3,7 @@
  * Plugin Name: Cleaner Gallery
  * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
  * Description: This plugin replaces the default gallery feature with a valid XHTML solution and offers support for multiple Lightbox-type image scripts.
- * Version: 0.9
+ * Version: 0.9 Beta
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
@@ -39,17 +39,22 @@ function cleaner_gallery_setup() {
 	define( 'CLEANER_GALLERY_URL', plugin_dir_url( __FILE__ ) );
 
 	if ( is_admin() ) {
+
 		/* Load translations. */
 		load_plugin_textdomain( 'cleaner-gallery', false, 'cleaner-gallery/languages' );
 
+		/* Load the plugin's admin file. */
 		require_once( CLEANER_GALLERY_DIR . 'admin.php' );
 	}
 
 	else {
+		/* Load the gallery shortcode functionality. */
 		require_once( CLEANER_GALLERY_DIR . 'gallery.php' );
 
+		/* Filter the gallery images with user options. */
 		add_filter( 'cleaner_gallery_image', 'cleaner_gallery_plugin_gallery_image', 10, 4 );
 
+		/* Filter the gallery captions with user options. */
 		add_filter( 'cleaner_gallery_caption', 'cleaner_gallery_plugin_image_caption', 10, 3 );
 
 		/* Load any scripts needed. */
@@ -85,38 +90,51 @@ function cleaner_gallery_get_setting( $option = '' ) {
 }
 
 /**
+ * Modifies the gallery captions according to user-selected settings.
+ *
  * @since 0.9.0
  */
 function cleaner_gallery_plugin_image_caption( $caption, $id, $attr ) {
 
+	/* If the caption should be removed, return empty string. */
 	if ( cleaner_gallery_get_setting( 'caption_remove' ) )
 		return '';
 
+	/* If the caption is empty and the user is using the title as a caption, get the image title. */
 	if ( empty( $caption ) && cleaner_gallery_get_setting( 'caption_title' ) ) {
 		$post = get_post( $id );
 		$caption = wptexturize( esc_html( $post->post_title ) );
 	}
 
+	/* If there's a caption and it should be linked, link to the attachment page. */
 	if ( !empty( $caption ) && cleaner_gallery_get_setting( 'caption_link' ) )
 		$caption = wp_get_attachment_link( $id, false, true, false, $caption );
 
+	/* Return the caption. */
 	return $caption;
 }
 
 /**
+ * Modifies gallery images based on user-selected settings.
+ *
  * @since 0.9.0
  */
 function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
 
+	/* If the image should link to nothing, remove the image link. */
 	if ( 'none' == $attr['link'] ) {
 		$image = preg_replace( '/<a.*?>(.*?)<\/a>/', '$1', $image );
 	}
+
+	/* If the image should link to the 'file' (full-size image), add in extra link attributes. */
 	elseif ( 'file' == $attr['link'] ) {
 		$attributes = cleaner_gallery_link_attributes( $instance );
 
 		if ( !empty( $attributes ) )
 			$image = str_replace( '<a href=', "<a{$attributes} href=", $image );
 	}
+
+	/* If the image should link to an intermediate-sized image, change the link attributes. */
 	elseif ( in_array( $attr['link'], get_intermediate_image_sizes() ) ) {
 
 		$post = get_post( $id );
@@ -129,6 +147,7 @@ function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
 		$image = preg_replace( '/<a.*?>(.*?)<\/a>/', "<a{$attributes}>$1</a>", $image );
 	}
 
+	/* Return the formatted image. */
 	return $image;
 }
 
