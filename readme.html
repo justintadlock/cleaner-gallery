@@ -11,7 +11,7 @@
 
 <h1>A guide to Cleaner Gallery</h1>
 
-<p><em>Cleaner Gallery</em> was written to take care of the invalid <acronym title="Extensible Hypertext Markup Language">XHTML</acronym> that WordPress produces when using the <code>[gallery]</code> shortcode.</p>
+<p><em>Cleaner Gallery</em> was written to take care of the invalid <acronym title="Hypertext Markup Language">HTML</acronym> that WordPress produces when using the <code>[gallery]</code> shortcode.</p>
 
 <p>It does a bit more than that though.  It will integrate with many Lightbox-type scripts and allow you to do much cooler things with your galleries.  Plus, it has a couple of extra options that you can play around with.</p>
 
@@ -26,7 +26,7 @@
 
 <h2>How to use the plugin</h2>
 
-<p>Once you've activated the plugin, you don't have to do anything else for clean, valid <acronym title="Extensible Hypertext Markup Language">XHTML</acronym> galleries.</p>
+<p>Once you've activated the plugin, you don't have to do anything else for clean, valid <acronym title="Hypertext Markup Language">HTML</acronym> galleries.</p>
 
 <p>However, there are a few options you can set.  Go to <em>Cleaner Gallery</em>, which is located under your <em>Appearance</em> menu in your WordPress dashboard.  From there, you'll see several settings to choose from.</p>
 
@@ -34,21 +34,17 @@
 
 <h2>Gallery Settings</h2>
 
-<p>The <em>Captions</em> settings are pretty self-explanatory.  You can choose to remove all captions, use the image title when no caption is present, and/or link the captions to the image attachment page.</p>
-
-<p>The <em>Default Image Link</em> setting will override the default WordPress gallery link and allow you to link your images how you want.  Note that you can also change this on a per-post basis.</p>
-
 <ul>
-	<li><strong>Blank:</strong> Don't let the plugin change the defaults.</li>
-	<li><strong>Attachment Page:</strong> Will make sure all of your images in galleries are linked to their attachment pages.</li>
-	<li><strong>Thumbnail, Medium, etc.:</strong> WordPress and custom image sizes to link gallery images to.</li>
-	<li><strong>Full:</strong> will link your gallery images to the full-sized view.</li>
-	<li><strong>None:</strong> will display the image, but it will neither be linked to its attachment page nor the image.</li>
+	<li><strong>Default gallery settings:</strong>  Allows you to set up how your galleries should be displayed by default.  Most of these settings can be overwritten with the use of custom options in the <code>[gallery]</code> shortcode.</li>
+	<li><strong>Image caption settings:</strong>  Allows you to remove all captions, use the image title when no caption is present, and/or link the captions to the image attachment page.</li>
+	<li><strong>Script and style settings:</strong>  Be sure to check the box to load the <em>Cleaner Gallery</em> stylesheet unless you're creating a custom stylesheet for your site.  You can also choose for the plugin to load the Thickbox stylesheet and JavaScript (included with WordPress).</li>
+	<li><strong>External image script:</strong>  Select a supported Lightbox-type script that you've installed and configured on your site.</li>
 </ul>
+
 
 <p>The <em>Default Image Size</em>, <em>Default Order</em>, and <em>Default Orderby</em> allow you to select site-wide settings.  These can be overwritten on a post-by-post basis.</p>
 
-<h2>JavaScript Settings</h2>
+<h2>Supported Lightbox-type scripts</h2>
 
 <p>I imagine this is the reason many of you downloaded the plugin.  It will integrate nicely with many different Lightbox-type scripts.  Here is the officially supported list.  This plugin has been tested and works with any of these.</p>
 
@@ -67,18 +63,13 @@
 	<li><a href="http://www.nickstakenburg.com/projects/lightview/" title="Lightview">Lightview</a></li>
 	<li><a href="http://www.stickmanlabs.com/lightwindow" title="LightWindow">LightWindow</a></li>
 	<li><a href="http://dolem.com/lytebox/" title="Lytebox">Lytebox</a></li>
+	<li><a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone" title="prettyPhoto">prettyPhoto</a></li>
 	<li><a href="http://mjijackson.com/shadowbox/index.html" title="Shadowbox">Shadowbox</a></li>
 	<li><a href="http://www.digitalia.be/software/slimbox" title="Slimbox">Slimbox</a></li>
 	<li><a href="http://www.digitalia.be/software/slimbox2" title="Slimbox 2">Slimbox 2</a></li>
 	<li><a href="http://www.laptoptips.ca/projects/wp-shutter-reloaded" title="Shutter Reloaded">Shutter Reloaded</a></li>
 	<li><a href="http://jquery.com/demo/thickbox" title="Thickbox">Thickbox</a></li>
 </ul>
-
-<h2>Auto-loading Thickbox</h2>
-
-<p><em>Thickbox</em> is a script that is included with WordPress, so you have the option of doing nothing other than selecting a couple of checkboxes.</p>
-
-<p>That's it!  Choose <em>Thickbox</em> from the <em>Image Script</em> drop-down and check the <em>Thickbox</em> JavaScript and <acronym title="Cascading Style Sheets">CSS</acronym> boxes and look at your new galleries.</p>
 
 <h2>Using an alternate script</h2>
 
@@ -123,7 +114,9 @@ function my_gallery_image_link_rel( $rel ) {
 
 <h2>Load a completely custom stylesheet</h2>
 
-<p>If you want even more control over your gallery style, you could get rid of the default stylesheet and load your own.  So, what you'd do first is add this to your theme's <code>functions.php</code> file:</p>
+<p>If you want even more control over your gallery style, you could get rid of the default stylesheet and load your own.  You have two options for disabling the stylesheet.  The first is to uncheck the box to include it on the <em>Cleaner Gallery</em> settings page.  This option is best for users.</p>
+
+<p>The second option is best for theme developers.  So, what you'd do first is add this to your theme's <code>functions.php</code> file:</p>
 
 <pre><code>add_action( 'wp_print_scripts', 'my_deregister_styles' );
 
@@ -131,7 +124,7 @@ function my_deregister_styles() {
 	wp_deregister_style( 'cleaner-gallery' );
 }</code></pre>
 
-<p>This will disable the default gallery styling.  You could then create completely custom style rules.  A good place to start would be copying the contents of <code>cleaner-gallery.css</code> into your theme's <code>style.css</code> and altering bits and pieces at a time.</p>
+<p>This will disable the default gallery styling.  You could then create completely custom style rules.  A good place to start would be copying the contents of <code>gallery.css</code> into your theme's <code>style.css</code> and altering bits and pieces at a time.</p>
 
 <h2>Creating a paginated gallery</h2>
 
