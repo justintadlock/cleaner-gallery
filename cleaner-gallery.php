@@ -3,7 +3,7 @@
  * Plugin Name: Cleaner Gallery
  * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
  * Description: This plugin replaces the default gallery feature with a valid XHTML solution and offers support for multiple Lightbox-type image scripts.
- * Version: 0.9 Beta
+ * Version: 0.9
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
@@ -64,7 +64,7 @@ function cleaner_gallery_setup() {
 		add_action( 'template_redirect', 'cleaner_gallery_enqueue_style' );
 
 		/* Filter the cleaner gallery default shortcode attributes. */
-		add_filter( 'cleaner_gallery_defaults', 'cleaner_gallery_default_settings' );
+		add_filter( 'cleaner_gallery_defaults', 'cleaner_gallery_default_args' );
 	}
 }
 
@@ -154,11 +154,11 @@ function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
 /**
  * Filters the default gallery arguments with user-selected arguments or the plugin defaults.
  *
- * @since 0.7.0
+ * @since 0.9.0
  * @param array $defaults
  * @return array $defaults
  */
-function cleaner_gallery_default_settings( $defaults ) {
+function cleaner_gallery_default_args( $defaults ) {
 
 	$defaults['order'] = ( ( cleaner_gallery_get_setting( 'order' ) ) ? cleaner_gallery_get_setting( 'order' ) : 'ASC' );
 

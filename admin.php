@@ -7,19 +7,45 @@
  * @package CleanerGallery
  */
 
-/* Add the settings page. */
-add_action( 'admin_menu', 'cleaner_gallery_add_settings_page' );
-
-/* Register the plugin settings. */
-add_action( 'admin_init', 'cleaner_gallery_register_settings' );
+/* Plugin admin and settings setup. */
+add_action( 'admin_menu', 'cleaner_gallery_admin_setup' );
 
 /**
- * Adds the settings page to the themes menu in the WordPress admin.
+ * Sets up the plugin settings page and registers the plugin settings.
  *
  * @since 0.9.0
  */
-function cleaner_gallery_add_settings_page() {
-	add_theme_page( __( 'Cleaner Gallery', 'cleaner-gallery' ), __( 'Cleaner Gallery', 'cleaner-gallery' ), 'edit_theme_options', 'cleaner-gallery', 'cleaner_gallery_settings_page' );
+function cleaner_gallery_admin_setup() {
+
+	/* Add the Cleaner Gallery settings page. */
+	$settings = add_theme_page( __( 'Cleaner Gallery', 'cleaner-gallery' ), __( 'Cleaner Gallery', 'cleaner-gallery' ), 'edit_theme_options', 'cleaner-gallery', 'cleaner_gallery_settings_page' );
+
+	/* Register the plugin settings. */
+	add_action( 'admin_init', 'cleaner_gallery_register_settings' );
+
+	/* Add default settings if none are present. */
+	add_action( "load-{$settings}", 'cleaner_gallery_load_settings_page' );
+}
+
+/**
+ * Adds the default Cleaner Gallery settings to the database if they have not been set.
+ *
+ * @since 0.9.0
+ */
+function cleaner_gallery_load_settings_page() {
+
+	/* Get settings from the database. */
+	$settings = get_option( 'cleaner_gallery_settings' );
+
+	/* If no settings are available, add the default settings to the database. */
+	if ( empty( $settings ) ) {
+		$settings = cleaner_gallery_default_settings();
+		add_option( 'cleaner_gallery_settings', $settings, '', 'yes' );
+
+		/* Redirect the page so that the settings are reflected on the settings page. */
+		wp_redirect( admin_url( 'themes.php?page=cleaner-gallery' ) );
+		exit;
+	}
 }
 
 /**
@@ -29,6 +55,27 @@ function cleaner_gallery_add_settings_page() {
  */
 function cleaner_gallery_register_settings() {
 	register_setting( 'cleaner_gallery_settings', 'cleaner_gallery_settings', 'cleaner_gallery_validate_settings' );
+}
+
+/**
+ * Returns an array of the default plugin settings.  These are only used on initial setup.
+ *
+ * @since 0.9.0
+ */
+function cleaner_gallery_default_settings() {
+	return array(
+		'size' => 'thumbnail',
+		'image_link' => '',
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
+		'caption_remove' => false,
+		'caption_title' => false,
+		'caption_link' => false,
+		'cleaner_gallery_css' => true,
+		'thickbox_js' => false,
+		'thickbox_css' => false,
+		'image_script' => ''
+	);
 }
 
 /**

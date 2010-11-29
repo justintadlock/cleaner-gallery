@@ -2,28 +2,28 @@
 Contributors: greenshady
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3687060
 Tags: gallery, lightbox, slimbox, images, jquery, fancybox, shadowbox, thickbox, valid-xhtml
-Requires at least: 2.6
-Tested up to: 3.0
-Stable tag: 0.8
+Requires at least: 3.0
+Tested up to: 3.1
+Stable tag: 0.9
 
 A cleaner WordPress [gallery] that integrates with multiple Lightbox-type scripts.
 
 == Description ==
 
-*Cleaner Gallery* was written to take care of the invalid XHTML that WordPress produces when using the `[gallery]` shortcode.
+*Cleaner Gallery* was written to take care of the invalid HTML that WordPress produces when using the `[gallery]` shortcode.
 
 It does a bit more than that though.  It will integrate with many Lightbox-type scripts and allow you to do much cooler things with your galleries.  Plus, it has a couple of extra options that you can play around with.
 
 **Features:**
 
-* Validates the aweful XHTML that WordPress spits out.
+* Validates the aweful HTML that WordPress spits out.
 * Several options on how you want your gallery images.
 * Allows multiple galleries in a single post.
 * Ability to set the number of images shown in each gallery.
 * Ability to exclude or include any images from your gallery.
-* Doesn't load any JavaScript unless you choose to do so.
+* Doesn't load any CSS or JavaScript unless you choose to do so.
 
-**Integrates with 17 different Lightbox-type scripts:**
+**Integrates with 18 different Lightbox-type scripts:**
 
 1. <a href="http://www.huddletogether.com/projects/lightbox2/" title="Lightbox 2">Lightbox 2</a>
 1. <a href="http://www.digitalia.be/software/slimbox" title="Slimbox">Slimbox</a>
@@ -42,6 +42,8 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 1. <a href="http://www.cabel.name/2008/02/fancyzoom-10.html" title="FancyZoom">FancyZoom</a>
 1. <a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a>
 1. <a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a>
+1. <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone" title="prettyPhoto">prettyPhoto</a>
+
 
 == Installation ==
 
@@ -51,11 +53,23 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 
 More detailed instructions are included in the plugin's `readme.html` file.
 
+== Upgrade ==
+
+If you're upgrading from a version prior to version 0.9 of this plugin, please update your plugin settings.  You can do so by going to *Appearance > Cleaner Gallery*.
+
 == Frequently Asked Questions ==
 
 = Why was this plugin created? =
 
 The purpose of the Cleaner Gallery plugin is to get rid of the invalid XHTML caused by the default WordPress `[gallery]` shortcode.  But, since I was having so much fun with it, I decided to make it compatible with several Lightbox-type image scripts.
+
+= Why do I have one column of images? =
+
+If you expect multiple columns of images but only have one column, go to *Appearance > Cleaner Gallery* and make sure to select the checkbox for loading the Cleaner Gallery stylesheet.
+
+= Why do my galleries look different after upgrading? =
+
+If you're upgrading the plugin, please update your plugin settings.  You should always check this when upgrading any plugin.  You can do so by going to *Appearance > Cleaner Gallery*.
 
 = Which Lightbox-type scripts will the plugin work with? =
 
@@ -78,6 +92,7 @@ The plugin has been tested and works with these scripts:
 1. <a href="http://www.cabel.name/2008/02/fancyzoom-10.html" title="FancyZoom">FancyZoom</a>
 1. <a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a>
 1. <a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a>
+1. <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone" title="prettyPhoto">prettyPhoto</a>
 
 = How do I set it up? =
 
@@ -90,6 +105,15 @@ If you need a more detailed guide, see `readme.html`, which is included with the
 Screenshots and a demo can be found on the <a href="http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin" title="Cleaner Gallery">Cleaner Gallery plugin page</a>.
 
 == Changelog ==
+
+**Version 0.9**
+
+* Important! Users sould re-save their settings after updating to version 0.9.
+* Completely overhauled the plugin settings page to use the WordPress settings API.
+* Added the option of loading the Cleaner Gallery stylesheet.
+* Made the gallery shortcode script modular, allowing it to be ported to other projects.
+* Added support for the <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone" title="prettyPhoto">prettyPhoto</a> script.
+* Plugin now only officially supports WordPress 3.0+.
 
 ** Version 0.8**
 
