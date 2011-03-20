@@ -15,7 +15,7 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package CleanerGallery
- * @version 0.9.0
+ * @version 0.9.1
  * @author Justin Tadlock <justin@justintadlock.com>
  * @copyright Copyright (c) 2008 - 2010, Justin Tadlock
  * @link http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
@@ -106,8 +106,9 @@ function cleaner_gallery( $output, $attr ) {
 	/* Count the number of attachments returned. */
 	$attachment_count = count( $attachments );
 
-	/* If there are fewer attachments than columns, set $columns to $attachment_count. */
-	$columns = ( ( $columns <= $attachment_count ) ? intval( $columns ) : intval( $attachment_count ) );
+	/* Allow developers to overwrite the number of columns. This can be useful for reducing columns with with fewer images than number of columns. */
+	//$columns = ( ( $columns <= $attachment_count ) ? intval( $columns ) : intval( $attachment_count ) );
+	$columns = apply_filters( 'cleaner_gallery_columns', intval( $columns ), $attachment_count, $attr );
 
 	/* Open the gallery <div>. */
 	$output = "\n\t\t\t<div id='gallery-{$id}-{$cleaner_gallery_instance}' class='gallery gallery-{$id}'>";
