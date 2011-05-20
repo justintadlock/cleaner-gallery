@@ -3,8 +3,8 @@ Contributors: greenshady
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3687060
 Tags: gallery, lightbox, slimbox, images, jquery, fancybox, shadowbox, thickbox, valid-xhtml
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 0.9.1
+Tested up to: 3.2
+Stable tag: 0.9.2
 
 A cleaner WordPress [gallery] that integrates with multiple Lightbox-type scripts.
 
@@ -105,6 +105,11 @@ If you need a more detailed guide, see `readme.html`, which is included with the
 Screenshots and a demo can be found on the <a href="http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin" title="Cleaner Gallery">Cleaner Gallery plugin page</a>.
 
 == Changelog ==
+
+**Version 0.9.2**
+
+* Fixed an IE8 CSS bug with `max-width` and `height`.
+* Tested with WordPress 3.2.
 
 **Version 0.9.1**
 
