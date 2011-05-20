@@ -36,7 +36,7 @@ function cleaner_gallery_setup() {
 	define( 'CLEANER_GALLERY_DIR', plugin_dir_path( __FILE__ ) );
 
 	/* Set constant path to the Cleaner Gallery plugin URL. */
-	define( 'CLEANER_GALLERY_URL', plugin_dir_url( __FILE__ ) );
+	define( 'CLEANER_GALLERY_URI', plugin_dir_url( __FILE__ ) );
 
 	if ( is_admin() ) {
 
@@ -44,7 +44,7 @@ function cleaner_gallery_setup() {
 		load_plugin_textdomain( 'cleaner-gallery', false, 'cleaner-gallery/languages' );
 
 		/* Load the plugin's admin file. */
-		require_once( CLEANER_GALLERY_DIR . 'admin.php' );
+		require_once( CLEANER_GALLERY_DIR . 'settings.php' );
 	}
 
 	else {
@@ -284,7 +284,7 @@ function cleaner_gallery_enqueue_style() {
 		wp_enqueue_style( 'thickbox' );
 
 	if ( cleaner_gallery_get_setting( 'cleaner_gallery_css' ) )
-		wp_enqueue_style( 'cleaner-gallery', CLEANER_GALLERY_URL . 'gallery.css', false, 0.9, 'all' );
+		wp_enqueue_style( 'cleaner-gallery', CLEANER_GALLERY_URI . 'gallery.css', false, 0.9, 'all' );
 }
 
 /**
