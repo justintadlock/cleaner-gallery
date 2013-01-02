@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Cleaner Gallery
- * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
- * Description: This plugin replaces the default gallery feature with a valid XHTML solution and offers support for multiple Lightbox-type image scripts.
+ * Plugin URI: http://themehybrid.com/plugins/cleaner-gallery
+ * Description: This plugin replaces the default gallery feature with a valid HTML solution and offers support for multiple Lightbox-type image scripts.
  * Version: 0.9.3 - Beta
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
@@ -15,10 +15,10 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package CleanerGallery
- * @version 0.9.2
+ * @version 0.9.3
  * @author Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2011, Justin Tadlock
- * @link http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
+ * @copyright Copyright (c) 2008 - 2012, Justin Tadlock
+ * @link http://themehybrid.com/plugins/cleaner-gallery
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
