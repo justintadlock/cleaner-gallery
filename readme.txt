@@ -1,10 +1,10 @@
 === Cleaner Gallery ===
 Contributors: greenshady
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3687060
+Donate link: http://themehybrid.com/donate
 Tags: gallery, lightbox, slimbox, images, jquery, fancybox, shadowbox, thickbox, valid-xhtml
-Requires at least: 3.0
-Tested up to: 3.2
-Stable tag: 0.9.2
+Requires at least: 3.5
+Tested up to: 3.5
+Stable tag: 0.9.3
 
 A cleaner WordPress [gallery] that integrates with multiple Lightbox-type scripts.
 
@@ -14,9 +14,11 @@ A cleaner WordPress [gallery] that integrates with multiple Lightbox-type script
 
 It does a bit more than that though.  It will integrate with many Lightbox-type scripts and allow you to do much cooler things with your galleries.  Plus, it has a couple of extra options that you can play around with.
 
+Support for this plugin is handled on the Theme Hybrid <a href="http://themehybrid.com/support">support forums</a>.
+
 **Features:**
 
-* Validates the aweful HTML that WordPress spits out.
+* Validates the awful HTML that WordPress spits out.
 * Several options on how you want your gallery images.
 * Allows multiple galleries in a single post.
 * Ability to set the number of images shown in each gallery.
@@ -43,7 +45,6 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 1. <a href="http://randomous.com/floatbox/home" title="Floatbox">Floatbox</a>
 1. <a href="http://colorpowered.com/colorbox" title="Colorbox">Colorbox</a>
 1. <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone" title="prettyPhoto">prettyPhoto</a>
-
 
 == Installation ==
 
@@ -105,6 +106,15 @@ If you need a more detailed guide, see `readme.html`, which is included with the
 Screenshots and a demo can be found on the <a href="http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin" title="Cleaner Gallery">Cleaner Gallery plugin page</a>.
 
 == Changelog ==
+
+**Version 0.9.3**
+
+* Renamed the `.clear` class to `.gallery-clear`.
+* Added the `suppress_filters` argument to `get_children()`.
+* Use `get_the_ID()` instead of the global `$post`.
+* Allow HTML in gallery captions.
+* Add the `ids` parameter to match WP 3.5 updates.
+* License updated to GPL v2+ instead of GPL v2-only.
 
 **Version 0.9.2**
 
