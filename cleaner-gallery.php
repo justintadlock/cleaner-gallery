@@ -1,24 +1,24 @@
 <?php
 /**
  * Plugin Name: Cleaner Gallery
- * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
- * Description: This plugin replaces the default gallery feature with a valid XHTML solution and offers support for multiple Lightbox-type image scripts.
- * Version: 0.9.1
+ * Plugin URI: http://themehybrid.com/plugins/cleaner-gallery
+ * Description: This plugin replaces the default gallery feature with a valid HTML solution and offers support for multiple Lightbox-type image scripts.
+ * Version: 0.9.3
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
- * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume 
- * that you can use any other version of the GPL.
+ * General Public License as published by the Free Software Foundation; either version 2 of the License, 
+ * or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package CleanerGallery
- * @version 0.9.1
+ * @version 0.9.3
  * @author Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2010, Justin Tadlock
- * @link http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
+ * @copyright Copyright (c) 2008 - 2012, Justin Tadlock
+ * @link http://themehybrid.com/plugins/cleaner-gallery
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -31,6 +31,10 @@ add_action( 'plugins_loaded', 'cleaner_gallery_setup' );
  * @since 0.8.0
  */
 function cleaner_gallery_setup() {
+	global $cleaner_gallery;
+
+	/* Set up an empty class for the global $cleaner_gallery object. */
+	$cleaner_gallery = new stdClass;
 
 	/* Set constant path to the Cleaner Gallery plugin directory. */
 	define( 'CLEANER_GALLERY_DIR', plugin_dir_path( __FILE__ ) );
