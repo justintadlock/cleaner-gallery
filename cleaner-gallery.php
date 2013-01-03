@@ -3,7 +3,7 @@
  * Plugin Name: Cleaner Gallery
  * Plugin URI: http://themehybrid.com/plugins/cleaner-gallery
  * Description: This plugin replaces the default gallery feature with a valid HTML solution and offers support for multiple Lightbox-type image scripts.
- * Version: 0.9.3 - Beta
+ * Version: 0.9.3
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
