@@ -147,6 +147,12 @@ final class Cleaner_Gallery_Plugin {
 	 */
 	public function enqueue_scripts() {
 
+		if ( cleaner_gallery_get_setting( 'thickbox_js' ) )
+			wp_enqueue_script( 'thickbox' );
+
+		if ( cleaner_gallery_get_setting( 'thickbox_css' ) )
+			wp_enqueue_style( 'thickbox' );
+
 		if ( !current_theme_supports( 'cleaner-gallery' ) )
 			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.css", null, '20130526' );
 	}

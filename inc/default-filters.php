@@ -1,85 +1,117 @@
 <?php
 
+/* Filter the gallery images with user options. */
+add_filter( 'cleaner_gallery_image', 'cleaner_gallery_plugin_gallery_image', 10, 4 );
 
+/* Filter the gallery captions with user options. */
+add_filter( 'cleaner_gallery_caption', 'cleaner_gallery_plugin_image_caption', 10, 3 );
 
+/* Filter the cleaner gallery default shortcode attributes. */
+add_filter( 'cleaner_gallery_defaults', 'cleaner_gallery_default_args' );
 
-		/* Filter the gallery images with user options. */
-		add_filter( 'cleaner_gallery_image', 'cleaner_gallery_plugin_gallery_image', 10, 4 );
+/**
+ * @since  1.0.0
+ * @access public
+ * @return array
+ */
+function cleaner_gallery_get_default_settings() {
 
-		/* Filter the gallery captions with user options. */
-		add_filter( 'cleaner_gallery_caption', 'cleaner_gallery_plugin_image_caption', 10, 3 );
+	$settings = array(
+		'size'           => 'thumbnail',
+		'image_link'     => '',
+		'orderby'        => 'menu_order ID',
+		'order'          => 'ASC',
+		'caption_remove' => false,
+		'caption_title'  => false,
+		'thickbox_js'    => false,
+		'thickbox_css'   => false,
+		'image_script'   => ''
+	);
 
-		/* Load any scripts needed. */
-		add_action( 'template_redirect', 'cleaner_gallery_enqueue_script' );
-
-		/* Load any stylesheets needed. */
-		add_action( 'template_redirect', 'cleaner_gallery_enqueue_style' );
-
-		/* Filter the cleaner gallery default shortcode attributes. */
-		add_filter( 'cleaner_gallery_defaults', 'cleaner_gallery_default_args' );
-
-
+	return $settings;
+}
 
 /**
  * Function for quickly grabbing settings for the plugin without having to call get_option() 
  * every time we need a setting.
  *
- * @since 0.8.0
+ * @since  0.8.0
+ * @access public
+ * @param  string  $option
+ * @return mixed
  */
 function cleaner_gallery_get_setting( $option = '' ) {
-	global $cleaner_gallery;
 
-	if ( !$option )
-		return false;
+	$settings = get_option( 'cleaner_gallery_settings', cleaner_gallery_get_default_settings() );
 
-	if ( !isset( $cleaner_gallery->settings ) )
-		$cleaner_gallery->settings = get_option( 'cleaner_gallery_settings' );
-
-	if ( !is_array( $cleaner_gallery->settings ) || empty( $cleaner_gallery->settings[$option] ) )
-		return false;
-
-	return $cleaner_gallery->settings[$option];
+	return $settings[ $option ];
 }
 
 /**
- * Modifies the gallery captions according to user-selected settings.
- *
- * @since 0.9.0
+ * @since  1.0.0
+ * @access public
+ * @return array
  */
-function cleaner_gallery_plugin_image_caption( $caption, $id, $attr ) {
+function cleaner_gallery_get_supported_scripts() {
 
-	/* If the caption should be removed, return empty string. */
-	if ( cleaner_gallery_get_setting( 'caption_remove' ) )
-		return '';
+	$scripts = array(
+		'colorbox'                 => __( 'Colorbox',                   'cleaner-gallery' ), 
+		'fancybox'                 => __( 'FancyBox',                   'cleaner-gallery' ), 
+		'fancyzoom'                => __( 'FancyZoom',                  'cleaner-gallery' ), 
+		'floatbox'                 => __( 'Floatbox',                   'cleaner-gallery' ), 
+		'greybox'                  => __( 'GreyBox',                    'cleaner-gallery' ), 
+		'jquery_lightbox'          => __( 'jQuery Lightbox',            'cleaner-gallery' ),
+		'jquery_lightbox_plugin'   => __( 'jQuery Lightbox Plugin',     'cleaner-gallery' ), 
+		'jquery_lightbox_balupton' => __( 'jQuery Lightbox (Balupton)', 'cleaner-gallery' ), 
+		'lightbox'                 => __( 'Lightbox',                   'cleaner-gallery' ), 
+		'lightview'                => __( 'Lightview',                  'cleaner-gallery' ), 
+		'lightwindow'              => __( 'LightWindow',                'cleaner-gallery' ), 
+		'lytebox'                  => __( 'Lytebox',                    'cleaner-gallery' ), 
+		'pretty_photo'             => __( 'prettyPhoto',                'cleaner-gallery' ), 
+		'shadowbox'                => __( 'Shadowbox',                  'cleaner-gallery' ), 
+		'shutter_reloaded'         => __( 'Shutter Reloaded',           'cleaner-gallery' ), 
+		'slimbox'                  => __( 'Slimbox',                    'cleaner-gallery' ), 
+		'thickbox'                 => __( 'Thickbox',                   'cleaner-gallery' )
+	);
 
-	/* If the caption is empty and the user is using the title as a caption, get the image title. */
-	if ( empty( $caption ) && cleaner_gallery_get_setting( 'caption_title' ) ) {
-		$post = get_post( $id );
-		$caption = wptexturize( esc_html( $post->post_title ) );
-	}
-
-	/* If there's a caption and it should be linked, link to the attachment page. */
-	if ( !empty( $caption ) && cleaner_gallery_get_setting( 'caption_link' ) )
-		$caption = wp_get_attachment_link( $id, false, true, false, $caption );
-
-	/* Return the caption. */
-	return $caption;
+	return apply_filters( 'cleaner_gallery_supported_scripts', $scripts );
 }
 
 /**
- * Modifies gallery images based on user-selected settings.
+ * Filters the default gallery arguments with user-selected arguments or the plugin defaults.
  *
- * @since 0.9.0
+ * @since  0.9.0
+ * @access public
+ * @param  array $defaults
+ * @return array
+ */
+function cleaner_gallery_default_args( $defaults ) {
+
+	$defaults['order']   = cleaner_gallery_get_setting( 'order' )      ? cleaner_gallery_get_setting( 'order' )      : 'ASC';
+	$defaults['orderby'] = cleaner_gallery_get_setting( 'orderby' )    ? cleaner_gallery_get_setting( 'orderby' )    : 'menu_order ID';
+	$defaults['size']    = cleaner_gallery_get_setting( 'size' )       ? cleaner_gallery_get_setting( 'size' )       : 'thumbnail';
+	$defaults['link']    = cleaner_gallery_get_setting( 'image_link' ) ? cleaner_gallery_get_setting( 'image_link' ) : '';
+
+	return $defaults;
+}
+
+/**
+ * Filters the gallery image if it has a link and adds the appropriate attributes for the lightbox
+ * scripts.
+ *
+ * @since  0.9.0
+ * @access public
+ * @param  string  $image
+ * @param  int     $id
+ * @param  array   $attr
+ * @param  int     $instance
+ * @return string
  */
 function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
 
-	/* If the image should link to nothing, remove the image link. */
-	if ( 'none' == $attr['link'] ) {
-		$image = preg_replace( '/<a.*?>(.*?)<\/a>/', '$1', $image );
-	}
-
 	/* If the image should link to the 'file' (full-size image), add in extra link attributes. */
-	elseif ( 'file' == $attr['link'] ) {
+	if ( 'file' == $attr['link'] ) {
+
 		$attributes = cleaner_gallery_link_attributes( $instance );
 
 		if ( !empty( $attributes ) )
@@ -87,12 +119,12 @@ function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
 	}
 
 	/* If the image should link to an intermediate-sized image, change the link attributes. */
-	elseif ( in_array( $attr['link'], get_intermediate_image_sizes() ) ) {
+	else if ( in_array( $attr['link'], get_intermediate_image_sizes() ) ) {
 
-		$post = get_post( $id );
+		$post      = get_post( $id );
 		$image_src = wp_get_attachment_image_src( $id, $attr['link'] );
 
-		$attributes = cleaner_gallery_link_attributes( $instance );
+		$attributes  = cleaner_gallery_link_attributes( $instance );
 		$attributes .= " href='{$image_src[0]}'";
 		$attributes .= " title='" . esc_attr( $post->post_title ) . "'";
 
@@ -104,38 +136,44 @@ function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
 }
 
 /**
- * Filters the default gallery arguments with user-selected arguments or the plugin defaults.
+ * Modifies the gallery captions according to user-selected settings.
  *
- * @since 0.9.0
- * @param array $defaults
- * @return array $defaults
+ * @since  0.9.0
+ * @access public
+ * @param  string  $caption
+ * @param  int     $id
+ * @param  array   $attr
+ * @return string
  */
-function cleaner_gallery_default_args( $defaults ) {
+function cleaner_gallery_plugin_image_caption( $caption, $id, $attr ) {
 
-	$defaults['order'] = ( ( cleaner_gallery_get_setting( 'order' ) ) ? cleaner_gallery_get_setting( 'order' ) : 'ASC' );
+	/* If the caption should be removed, return empty string. */
+	if ( cleaner_gallery_get_setting( 'caption_remove' ) )
+		$caption = '';
 
-	$defaults['orderby'] = ( ( cleaner_gallery_get_setting( 'orderby' ) ) ? cleaner_gallery_get_setting( 'orderby' ) : 'menu_order ID' );
+	/* If the caption is empty and the user is using the title as a caption, get the image title. */
+	else if ( empty( $caption ) && cleaner_gallery_get_setting( 'caption_title' ) )
+		$caption = wptexturize( get_the_title( $id ) );
 
-	$defaults['size'] = ( ( cleaner_gallery_get_setting( 'size' ) ) ? cleaner_gallery_get_setting( 'size' ) : 'thumbnail' );
-
-	$defaults['link'] = ( ( cleaner_gallery_get_setting( 'image_link' ) ) ? cleaner_gallery_get_setting( 'image_link' ) : '' );
-
-	return $defaults;
+	/* Return the caption. */
+	return $caption;
 }
 
 /**
  * Returns the link class and rel attributes based on what the user selected in the plugin
  * settings.  This is important for handling Lightbox-type image scripts.
  *
- * @since 0.7.0
- * @param int $id Post ID.
- * @return string $attributes
+ * @since  0.7.0
+ * @access public
+ * @param  int    $post_id
+ * @return string
  */
-function cleaner_gallery_link_attributes( $id = 0 ) {
+function cleaner_gallery_link_attributes( $post_id = 0 ) {
 
-	$class = '';
-	$rel = '';
 	$script = cleaner_gallery_get_setting( 'image_script' );
+
+	if ( array_key_exists( $script, cleaner_gallery_get_supported_scripts() ) )
+		return '';
 
 	switch ( $script ) {
 
@@ -143,141 +181,132 @@ function cleaner_gallery_link_attributes( $id = 0 ) {
 		case 'slimbox' :
 		case 'jquery_lightbox_plugin' :
 		case 'jquery_lightbox_balupton' :
+
 			$class = 'lightbox';
-			$rel = "lightbox[cleaner-gallery-{$id}]";
+			$rel   = "lightbox[cleaner-gallery-{$id}]";
 			break;
 
 		case 'colorbox' :
+
 			$class = "colorbox colorbox-{$id}";
-			$rel = "colorbox-{$id}";
+			$rel   = "colorbox-{$id}";
 			break;
 
 		case 'jquery_lightbox' :
+
 			$class = 'lightbox';
-			$rel = "cleaner-gallery-{$id}";
+			$rel   = "cleaner-gallery-{$id}";
 			break;
 
 		case 'lightwindow' :
+
 			$class = 'lightwindow';
-			$rel = "lightwindow[cleaner-gallery-{$id}]";
+			$rel   = "lightwindow[cleaner-gallery-{$id}]";
 			break;
 
 		case 'floatbox' :
+
 			$class = 'floatbox';
-			$rel = "floatbox.cleaner-gallery-{$id}";
+			$rel   = "floatbox.cleaner-gallery-{$id}";
 			break;
 
 		case 'shutter_reloaded' :
+
 			$class = "shutterset_cleaner-gallery-{$id}";
-			$rel = "lightbox[cleaner-gallery-{$id}]";
+			$rel   = "lightbox[cleaner-gallery-{$id}]";
 			break;
 
 		case 'fancybox' :
+
 			$class = 'fancybox';
-			$rel = "fancybox-{$id}";
+			$rel   = "fancybox-{$id}";
 			break;
 
 		case 'greybox' :
+
 			$class = 'greybox';
-			$rel = "gb_imageset[cleaner-gallery-{$id}]";
+			$rel   = "gb_imageset[cleaner-gallery-{$id}]";
 			break;
 
 		case 'lightview' :
+
 			$class = 'lightview';
-			$rel = "gallery[cleaner-gallery-{$id}]";
+			$rel   = "gallery[cleaner-gallery-{$id}]";
 			break;
 
 		case 'lytebox' :
+
 			$class = 'lytebox';
-			$rel = "lytebox[cleaner-gallery-{$id}]";
+			$rel   = "lytebox[cleaner-gallery-{$id}]";
 			break;
 
 		case 'thickbox' :
+
 			$class = 'thickbox';
-			$rel = "clean-gallery-{$id}";
+			$rel   = "clean-gallery-{$id}";
 			break;
 
 		case 'shadowbox' :
+
 			$class = 'shadowbox';
-			$rel = "shadowbox[cleaner-gallery-{$id}]";
+			$rel   = "shadowbox[cleaner-gallery-{$id}]";
 			break;
 
 		case 'pretty_photo' :
+
 			$class = 'prettyPhoto';
-			$rel = "prettyPhoto[{$id}]";
+			$rel   = "prettyPhoto[{$id}]";
 			break;
 
 		case 'fancyzoom' :
 		default :
+
 			$class = '';
-			$rel = '';
+			$rel   = '';
 			break;
 	}
 
 	$class = apply_filters( 'cleaner_gallery_image_link_class', $class );
-	$rel = apply_filters( 'cleaner_gallery_image_link_rel', $rel );
+	$rel   = apply_filters( 'cleaner_gallery_image_link_rel',   $rel   );
 
-	if ( !empty( $class ) )
-		$class = " class='{$class}'";
-
-	if ( !empty( $rel ) )
-		$rel = " rel='{$rel}'";
+	$class = !empty( $class ) ? " class='{$class}'" : '';
+	$rel   = !empty( $rel )   ? " rel='{$rel}'"     : '';
 
 	return $class . $rel;
 }
 
+/* === DEPRECATED === */
 
 /**
- * Load the cleaner gallery stylesheet and the Thickbox stylesheet if needed.
- *
- * @since 0.8.0
+ * @since      0.8.0
+ * @deprecated 1.0.0
  */
 function cleaner_gallery_enqueue_style() {
-	if ( cleaner_gallery_get_setting( 'thickbox_css' ) )
-		wp_enqueue_style( 'thickbox' );
-
-	if ( cleaner_gallery_get_setting( 'cleaner_gallery_css' ) )
-		wp_enqueue_style( 'cleaner-gallery', CLEANER_GALLERY_URI . 'gallery.css', false, 0.9, 'all' );
+	_deprecated_function( __FUNCTION__, '1.0.0', '' );
 }
 
 /**
- * Load the Thickbox JavaScript if needed.
- *
- * @since 0.8.0
+ * @since      0.8.0
+ * @deprecated 1.0.0
  */
 function cleaner_gallery_enqueue_script() {
-	if ( cleaner_gallery_get_setting( 'thickbox_js' ) )
-		wp_enqueue_script( 'thickbox' );
+	_deprecated_function( __FUNCTION__, '1.0.0', '' );
 }
 
 /**
- * @since 0.7.0
- * @deprecated 0.9.0
- */
-function cleaner_gallery_id( $id = 0 ) {
-	return $id;
-}
-
-
-
-
-/* Set up the plugin. */
-//add_action( 'plugins_loaded', 'cleaner_gallery_setup' );
-
-/**
- * Sets up the Cleaner Gallery plugin and loads files at the appropriate time.
- *
  * @since      0.8.0
  * @deprecated 1.0.0
  */
 function cleaner_gallery_setup() {
-	/* deprecated */
+	_deprecated_function( __FUNCTION__, '1.0.0', '' );
 }
 
-
-
-
-
-
+/**
+ * @since      0.7.0
+ * @deprecated 0.9.0
+ */
+function cleaner_gallery_id( $id = 0 ) {
+	_deprecated_function( __FUNCTION__, '0.9.0', '' );
+}
 
 ?>
