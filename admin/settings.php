@@ -102,7 +102,7 @@ function cleaner_gallery_add_meta_boxes() {
  * @since 0.3.0
  */
 function cleaner_gallery_load_meta_boxes() {
-	require_once( CLEANER_GALLERY_DIR . 'meta-boxes.php' );
+	require_once( CLEANER_GALLERY_DIR . 'admin/meta-boxes.php' );
 }
 
 /**

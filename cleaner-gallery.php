@@ -47,7 +47,7 @@ function cleaner_gallery_setup() {
 		load_plugin_textdomain( 'cleaner-gallery', false, 'cleaner-gallery/languages' );
 
 		/* Load the plugin's admin file. */
-		require_once( CLEANER_GALLERY_DIR . 'settings.php' );
+		require_once( CLEANER_GALLERY_DIR . 'admin/settings.php' );
 	}
 
 	else {
