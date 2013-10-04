@@ -117,7 +117,35 @@ If you're building a WordPress theme, it's extremely simple to add support for t
 
 Then, copy the plugins `css/gallery.css` file into your theme's stylesheet.  You are free to make any customizations you wish.  It's much more flexible than the default WordPress gallery, so you have a lot of freedom with design choices.
 
-### Screenshots
+### How do I customize the styles for galleries?
+
+Customizing your galleries can be very simple. Here's some CSS you can add to your theme's `style.css` and modify.
+
+	/* Style rules for the entire gallery */
+	.gallery {}
+	
+		/* Style rules for each item (image and caption) in the gallery */
+		.gallery-item {}
+		
+			/* Style rules for images within the gallery */
+			.gallery-icon {}
+			
+			/* Style rules for captions within the gallery */
+			.gallery-caption {}
+
+### Can I paginate galleries?
+
+While the plugin has no way of paginating its own galleries, it's very much possible to make this happen using the WordPress `<!--nextpage-->` tag.
+
+Let's suppose we have 12 images we want to show. The first six will be on the first page while the following six will be on the second page. You'd use this code in the post editor:
+
+	[gallery numberposts="6"]
+	
+	<!--nextpage-->
+	
+	[gallery numberposts="6" offset="6"]
+
+== Screenshots ==
 
 Screenshots and a demo can be found on the [Cleaner Gallery page](http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin).
 
