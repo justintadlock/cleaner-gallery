@@ -156,7 +156,7 @@ final class Cleaner_Gallery_Plugin {
 			wp_enqueue_style( 'thickbox' );
 
 		if ( !current_theme_supports( 'cleaner-gallery' ) )
-			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.css", null, '20130526' );
+			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.min.css", null, '20130526' );
 	}
 
 	/**
