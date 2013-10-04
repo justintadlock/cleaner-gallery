@@ -10,11 +10,11 @@ add_filter( 'cleaner_gallery_caption', 'cleaner_gallery_plugin_image_caption', 1
 add_filter( 'cleaner_gallery_defaults', 'cleaner_gallery_default_args' );
 
 /**
- * @since  1.0.0
+ * @since  0.9.0
  * @access public
  * @return array
  */
-function cleaner_gallery_get_default_settings() {
+function cleaner_gallery_default_settings() {
 
 	$settings = array(
 		'size'           => 'thumbnail',
@@ -42,7 +42,7 @@ function cleaner_gallery_get_default_settings() {
  */
 function cleaner_gallery_get_setting( $option = '' ) {
 
-	$settings = get_option( 'cleaner_gallery_settings', cleaner_gallery_get_default_settings() );
+	$settings = get_option( 'cleaner_gallery_settings', cleaner_gallery_default_settings() );
 
 	return $settings[ $option ];
 }
@@ -165,14 +165,14 @@ function cleaner_gallery_plugin_image_caption( $caption, $id, $attr ) {
  *
  * @since  0.7.0
  * @access public
- * @param  int    $post_id
+ * @param  int    $id
  * @return string
  */
-function cleaner_gallery_link_attributes( $post_id = 0 ) {
+function cleaner_gallery_link_attributes( $id = 0 ) {
 
 	$script = cleaner_gallery_get_setting( 'image_script' );
 
-	if ( array_key_exists( $script, cleaner_gallery_get_supported_scripts() ) )
+	if ( !array_key_exists( $script, cleaner_gallery_get_supported_scripts() ) )
 		return '';
 
 	switch ( $script ) {

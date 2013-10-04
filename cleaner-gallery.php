@@ -126,7 +126,7 @@ final class Cleaner_Gallery_Plugin {
 	public function i18n() {
 
 		/* Load the translation of the plugin. */
-		load_plugin_textdomain( 'custom-background-extended', false, 'custom-background-extended/languages' );
+	//	load_plugin_textdomain( 'custom-background-extended', false, 'custom-background-extended/languages' );
 	}
 
 	/**
@@ -139,7 +139,7 @@ final class Cleaner_Gallery_Plugin {
 	public function admin() {
 
 		if ( is_admin() )
-			require_once( "{$this->directory_path}admin/settings.php" );
+			require_once( "{$this->directory_path}admin/admin.php" );
 	}
 
 	/**
