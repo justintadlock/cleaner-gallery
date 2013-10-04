@@ -10,6 +10,10 @@
 /* Plugin admin and settings setup. */
 add_action( 'admin_menu', 'cleaner_gallery_admin_setup' );
 
+/* Custom meta for plugin on the plugins admin screen. */
+add_filter( 'plugin_row_meta', 'cleaner_gallery_plugin_row_meta', 10, 2 );
+
+
 /**
  * Sets up the plugin settings page and registers the plugin settings.
  *
@@ -237,6 +241,26 @@ function cleaner_gallery_settings_page() {
 		</form>
 	</div>
 <?php }
+
+/**
+ * Adds support, rating, and donation links to the plugin row meta on the plugins admin screen.
+ *
+ * @since  1.0.0
+ * @access public
+ * @param  array  $meta
+ * @param  string $file
+ * @return array
+ */
+function cleaner_gallery_plugin_row_meta( $meta, $file ) {
+
+	if ( preg_match( '/cleaner-gallery\.php/i', $file ) ) {
+		$meta[] = '<a href="http://themehybrid.com/support">' . __( 'Plugin support', 'cleaner-gallery' ) . '</a>';
+		$meta[] = '<a href="http://wordpress.org/support/view/plugin-reviews/cleaner-gallery#postform">' . __( 'Rate plugin', 'cleaner-gallery' ) . '</a>';
+		$meta[] = '<a href="http://themehybrid.com/donate">' . __( 'Donate', 'cleaner-gallery' ) . '</a>';
+	}
+
+	return $meta;
+}
 
 /**
  * @since      0.9.0
