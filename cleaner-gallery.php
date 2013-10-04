@@ -31,6 +31,9 @@ add_action( 'plugins_loaded', 'cleaner_gallery_setup' );
  * @since 0.8.0
  */
 function cleaner_gallery_setup() {
+	global $cleaner_gallery;
+
+	$cleaner_gallery = new stdClass;
 
 	/* Set constant path to the Cleaner Gallery plugin directory. */
 	define( 'CLEANER_GALLERY_DIR', plugin_dir_path( __FILE__ ) );
