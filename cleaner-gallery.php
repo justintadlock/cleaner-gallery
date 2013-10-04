@@ -80,9 +80,6 @@ final class Cleaner_Gallery_Plugin {
 
 		/* Enqueue scripts and styles. */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
-
-		/* Register admin scripts and styles. */
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_register_scripts' ), 5 );
 	}
 
 	/**
@@ -157,17 +154,6 @@ final class Cleaner_Gallery_Plugin {
 
 		if ( !current_theme_supports( 'cleaner-gallery' ) )
 			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.min.css", null, '20130526' );
-	}
-
-	/**
-	 * Registers scripts and styles for use in the WordPress admin (does not load theme).
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function admin_register_scripts() {
-		wp_register_style( 'cleaner-gallery-admin', "{$this->directory_uri}css/admin.css", null, '20130526' );
 	}
 
 	/**
