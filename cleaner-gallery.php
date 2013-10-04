@@ -49,7 +49,7 @@ function cleaner_gallery_setup() {
 
 	else {
 		/* Load the gallery shortcode functionality. */
-		require_once( CLEANER_GALLERY_DIR . 'gallery.php' );
+		require_once( CLEANER_GALLERY_DIR . 'inc/gallery.php' );
 
 		/* Filter the gallery images with user options. */
 		add_filter( 'cleaner_gallery_image', 'cleaner_gallery_plugin_gallery_image', 10, 4 );
