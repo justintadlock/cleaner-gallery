@@ -97,6 +97,10 @@ final class Cleaner_Gallery_Plugin {
 	public function setup() {
 		$this->directory_path = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->directory_uri  = trailingslashit( plugin_dir_url(  __FILE__ ) );
+
+		/* Legacy */
+		define( 'CLEANER_GALLERY_DIR', $this->directory_path );
+		define( 'CLEANER_GALLERY_URI', $this->directory_uri  );
 	}
 
 	/**
