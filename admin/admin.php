@@ -13,7 +13,6 @@ add_action( 'admin_menu', 'cleaner_gallery_admin_setup' );
 /* Custom meta for plugin on the plugins admin screen. */
 add_filter( 'plugin_row_meta', 'cleaner_gallery_plugin_row_meta', 10, 2 );
 
-
 /**
  * Sets up the plugin settings page and registers the plugin settings.
  *
@@ -230,7 +229,7 @@ function cleaner_gallery_settings_page() {
 						<p><?php _e( "Here's how you can give back:", 'cleaner-gallery' ); ?></p>
 						<ul>
 							<li><a href="http://wordpress.org/support/view/plugin-reviews/cleaner-gallery#postform"><?php _e( 'Give the plugin a good rating.', 'cleaner-gallery' ); ?></a></li>
-							<li><a href="http://themehybrid.com/donate"><?php _e( 'Donate back to the project.', 'cleaner-gallery' ); ?></a></li>
+							<li><a href="http://themehybrid.com/donate"><?php _e( 'Donate to the project.', 'cleaner-gallery' ); ?></a></li>
 						</ul>
 					</td>
 				</tr>
