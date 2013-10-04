@@ -22,290 +22,162 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-/* Set up the plugin. */
-add_action( 'plugins_loaded', 'cleaner_gallery_setup' );
-
 /**
- * Sets up the Cleaner Gallery plugin and loads files at the appropriate time.
- *
- * @since 0.8.0
- */
-function cleaner_gallery_setup() {
-	global $cleaner_gallery;
+ * @since  1.0.0
+*/
+final class Cleaner_Gallery_Plugin {
 
-	$cleaner_gallery = new stdClass;
+	/**
+	 * Holds the instance of this class.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    object
+	 */
+	private static $instance;
 
-	/* Set constant path to the Cleaner Gallery plugin directory. */
-	define( 'CLEANER_GALLERY_DIR', plugin_dir_path( __FILE__ ) );
+	/**
+	 * Stores the directory path for this plugin.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    string
+	 */
+	private $directory_path;
 
-	/* Set constant path to the Cleaner Gallery plugin URL. */
-	define( 'CLEANER_GALLERY_URI', plugin_dir_url( __FILE__ ) );
+	/**
+	 * Stores the directory URI for this plugin.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    string
+	 */
+	private $directory_uri;
 
-	if ( is_admin() ) {
+	/**
+	 * Plugin setup.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function __construct() {
 
-		/* Load translations. */
-		load_plugin_textdomain( 'cleaner-gallery', false, 'cleaner-gallery/languages' );
+		/* @todo - drop this */
+		global $cleaner_gallery;
+		$cleaner_gallery = new stdClass;
+		/* ===================== */
 
-		/* Load the plugin's admin file. */
-		require_once( CLEANER_GALLERY_DIR . 'admin/settings.php' );
+		/* Set the properties needed by the plugin. */
+		add_action( 'plugins_loaded', array( $this, 'setup' ), 1 );
+
+		/* Internationalize the text strings used. */
+		add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
+
+		/* Load the functions files. */
+		add_action( 'plugins_loaded', array( $this, 'includes' ), 3 );
+
+		/* Load the admin files. */
+		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
+
+		/* Enqueue scripts and styles. */
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
+
+		/* Register admin scripts and styles. */
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_register_scripts' ), 5 );
 	}
 
-	else {
-		/* Load the gallery shortcode functionality. */
-		require_once( CLEANER_GALLERY_DIR . 'inc/gallery.php' );
+	/**
+	 * Defines the directory path and URI for the plugin.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function setup() {
+		$this->directory_path = trailingslashit( plugin_dir_path( __FILE__ ) );
+		$this->directory_uri  = trailingslashit( plugin_dir_url(  __FILE__ ) );
+	}
 
-		/* Filter the gallery images with user options. */
-		add_filter( 'cleaner_gallery_image', 'cleaner_gallery_plugin_gallery_image', 10, 4 );
+	/**
+	 * Loads the initial files needed by the plugin.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function includes() {
 
-		/* Filter the gallery captions with user options. */
-		add_filter( 'cleaner_gallery_caption', 'cleaner_gallery_plugin_image_caption', 10, 3 );
+		require_once( "{$this->directory_path}inc/gallery.php"         );
+		require_once( "{$this->directory_path}inc/default-filters.php" );
+	}
 
-		/* Load any scripts needed. */
-		add_action( 'template_redirect', 'cleaner_gallery_enqueue_script' );
+	/**
+	 * Loads the translation files.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function i18n() {
 
-		/* Load any stylesheets needed. */
-		add_action( 'template_redirect', 'cleaner_gallery_enqueue_style' );
+		/* Load the translation of the plugin. */
+		load_plugin_textdomain( 'custom-background-extended', false, 'custom-background-extended/languages' );
+	}
 
-		/* Filter the cleaner gallery default shortcode attributes. */
-		add_filter( 'cleaner_gallery_defaults', 'cleaner_gallery_default_args' );
+	/**
+	 * Loads the admin functions and files.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function admin() {
+
+		if ( is_admin() )
+			require_once( "{$this->directory_path}admin/settings.php" );
+	}
+
+	/**
+	 * Enqueues scripts and styles on the front end.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function enqueue_scripts() {
+
+		if ( !current_theme_supports( 'cleaner-gallery' ) )
+			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.css", null, '20130526' );
+	}
+
+	/**
+	 * Registers scripts and styles for use in the WordPress admin (does not load theme).
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function admin_register_scripts() {
+		wp_register_style( 'cleaner-gallery-admin', "{$this->directory_uri}css/admin.css", null, '20130526' );
+	}
+
+	/**
+	 * Returns the instance.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return object
+	 */
+	public static function get_instance() {
+
+		if ( !self::$instance )
+			self::$instance = new self;
+
+		return self::$instance;
 	}
 }
 
-/**
- * Function for quickly grabbing settings for the plugin without having to call get_option() 
- * every time we need a setting.
- *
- * @since 0.8.0
- */
-function cleaner_gallery_get_setting( $option = '' ) {
-	global $cleaner_gallery;
-
-	if ( !$option )
-		return false;
-
-	if ( !isset( $cleaner_gallery->settings ) )
-		$cleaner_gallery->settings = get_option( 'cleaner_gallery_settings' );
-
-	if ( !is_array( $cleaner_gallery->settings ) || empty( $cleaner_gallery->settings[$option] ) )
-		return false;
-
-	return $cleaner_gallery->settings[$option];
-}
-
-/**
- * Modifies the gallery captions according to user-selected settings.
- *
- * @since 0.9.0
- */
-function cleaner_gallery_plugin_image_caption( $caption, $id, $attr ) {
-
-	/* If the caption should be removed, return empty string. */
-	if ( cleaner_gallery_get_setting( 'caption_remove' ) )
-		return '';
-
-	/* If the caption is empty and the user is using the title as a caption, get the image title. */
-	if ( empty( $caption ) && cleaner_gallery_get_setting( 'caption_title' ) ) {
-		$post = get_post( $id );
-		$caption = wptexturize( esc_html( $post->post_title ) );
-	}
-
-	/* If there's a caption and it should be linked, link to the attachment page. */
-	if ( !empty( $caption ) && cleaner_gallery_get_setting( 'caption_link' ) )
-		$caption = wp_get_attachment_link( $id, false, true, false, $caption );
-
-	/* Return the caption. */
-	return $caption;
-}
-
-/**
- * Modifies gallery images based on user-selected settings.
- *
- * @since 0.9.0
- */
-function cleaner_gallery_plugin_gallery_image( $image, $id, $attr, $instance ) {
-
-	/* If the image should link to nothing, remove the image link. */
-	if ( 'none' == $attr['link'] ) {
-		$image = preg_replace( '/<a.*?>(.*?)<\/a>/', '$1', $image );
-	}
-
-	/* If the image should link to the 'file' (full-size image), add in extra link attributes. */
-	elseif ( 'file' == $attr['link'] ) {
-		$attributes = cleaner_gallery_link_attributes( $instance );
-
-		if ( !empty( $attributes ) )
-			$image = str_replace( '<a href=', "<a{$attributes} href=", $image );
-	}
-
-	/* If the image should link to an intermediate-sized image, change the link attributes. */
-	elseif ( in_array( $attr['link'], get_intermediate_image_sizes() ) ) {
-
-		$post = get_post( $id );
-		$image_src = wp_get_attachment_image_src( $id, $attr['link'] );
-
-		$attributes = cleaner_gallery_link_attributes( $instance );
-		$attributes .= " href='{$image_src[0]}'";
-		$attributes .= " title='" . esc_attr( $post->post_title ) . "'";
-
-		$image = preg_replace( '/<a.*?>(.*?)<\/a>/', "<a{$attributes}>$1</a>", $image );
-	}
-
-	/* Return the formatted image. */
-	return $image;
-}
-
-/**
- * Filters the default gallery arguments with user-selected arguments or the plugin defaults.
- *
- * @since 0.9.0
- * @param array $defaults
- * @return array $defaults
- */
-function cleaner_gallery_default_args( $defaults ) {
-
-	$defaults['order'] = ( ( cleaner_gallery_get_setting( 'order' ) ) ? cleaner_gallery_get_setting( 'order' ) : 'ASC' );
-
-	$defaults['orderby'] = ( ( cleaner_gallery_get_setting( 'orderby' ) ) ? cleaner_gallery_get_setting( 'orderby' ) : 'menu_order ID' );
-
-	$defaults['size'] = ( ( cleaner_gallery_get_setting( 'size' ) ) ? cleaner_gallery_get_setting( 'size' ) : 'thumbnail' );
-
-	$defaults['link'] = ( ( cleaner_gallery_get_setting( 'image_link' ) ) ? cleaner_gallery_get_setting( 'image_link' ) : '' );
-
-	return $defaults;
-}
-
-/**
- * Returns the link class and rel attributes based on what the user selected in the plugin
- * settings.  This is important for handling Lightbox-type image scripts.
- *
- * @since 0.7.0
- * @param int $id Post ID.
- * @return string $attributes
- */
-function cleaner_gallery_link_attributes( $id = 0 ) {
-
-	$class = '';
-	$rel = '';
-	$script = cleaner_gallery_get_setting( 'image_script' );
-
-	switch ( $script ) {
-
-		case 'lightbox' :
-		case 'slimbox' :
-		case 'jquery_lightbox_plugin' :
-		case 'jquery_lightbox_balupton' :
-			$class = 'lightbox';
-			$rel = "lightbox[cleaner-gallery-{$id}]";
-			break;
-
-		case 'colorbox' :
-			$class = "colorbox colorbox-{$id}";
-			$rel = "colorbox-{$id}";
-			break;
-
-		case 'jquery_lightbox' :
-			$class = 'lightbox';
-			$rel = "cleaner-gallery-{$id}";
-			break;
-
-		case 'lightwindow' :
-			$class = 'lightwindow';
-			$rel = "lightwindow[cleaner-gallery-{$id}]";
-			break;
-
-		case 'floatbox' :
-			$class = 'floatbox';
-			$rel = "floatbox.cleaner-gallery-{$id}";
-			break;
-
-		case 'shutter_reloaded' :
-			$class = "shutterset_cleaner-gallery-{$id}";
-			$rel = "lightbox[cleaner-gallery-{$id}]";
-			break;
-
-		case 'fancybox' :
-			$class = 'fancybox';
-			$rel = "fancybox-{$id}";
-			break;
-
-		case 'greybox' :
-			$class = 'greybox';
-			$rel = "gb_imageset[cleaner-gallery-{$id}]";
-			break;
-
-		case 'lightview' :
-			$class = 'lightview';
-			$rel = "gallery[cleaner-gallery-{$id}]";
-			break;
-
-		case 'lytebox' :
-			$class = 'lytebox';
-			$rel = "lytebox[cleaner-gallery-{$id}]";
-			break;
-
-		case 'thickbox' :
-			$class = 'thickbox';
-			$rel = "clean-gallery-{$id}";
-			break;
-
-		case 'shadowbox' :
-			$class = 'shadowbox';
-			$rel = "shadowbox[cleaner-gallery-{$id}]";
-			break;
-
-		case 'pretty_photo' :
-			$class = 'prettyPhoto';
-			$rel = "prettyPhoto[{$id}]";
-			break;
-
-		case 'fancyzoom' :
-		default :
-			$class = '';
-			$rel = '';
-			break;
-	}
-
-	$class = apply_filters( 'cleaner_gallery_image_link_class', $class );
-	$rel = apply_filters( 'cleaner_gallery_image_link_rel', $rel );
-
-	if ( !empty( $class ) )
-		$class = " class='{$class}'";
-
-	if ( !empty( $rel ) )
-		$rel = " rel='{$rel}'";
-
-	return $class . $rel;
-}
-
-/**
- * Load the cleaner gallery stylesheet and the Thickbox stylesheet if needed.
- *
- * @since 0.8.0
- */
-function cleaner_gallery_enqueue_style() {
-	if ( cleaner_gallery_get_setting( 'thickbox_css' ) )
-		wp_enqueue_style( 'thickbox' );
-
-	if ( cleaner_gallery_get_setting( 'cleaner_gallery_css' ) )
-		wp_enqueue_style( 'cleaner-gallery', CLEANER_GALLERY_URI . 'gallery.css', false, 0.9, 'all' );
-}
-
-/**
- * Load the Thickbox JavaScript if needed.
- *
- * @since 0.8.0
- */
-function cleaner_gallery_enqueue_script() {
-	if ( cleaner_gallery_get_setting( 'thickbox_js' ) )
-		wp_enqueue_script( 'thickbox' );
-}
-
-/**
- * @since 0.7.0
- * @deprecated 0.9.0
- */
-function cleaner_gallery_id( $id = 0 ) {
-	return $id;
-}
+Cleaner_Gallery_Plugin::get_instance();
 
 ?>
