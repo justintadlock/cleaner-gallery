@@ -147,7 +147,12 @@ Let's suppose we have 12 images we want to show. The first six will be on the fi
 
 == Screenshots ==
 
-Screenshots and a demo can be found on the [Cleaner Gallery page](http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin).
+A demo can be found on the [Cleaner Gallery page](http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin) or my [gallery archives](http://justintadlock.com/archives/type/gallery).
+
+1. Gallery from the [Socially Awkward theme](http://wordpress.org/themes/socially-awkward).
+2. Gallery from the [Chun theme](http://wordpress.org/themes/chun).
+3. Gallery from the [Picturesque theme](http://wordpress.org/themes/picturesque).
+4. Cleaner Gallery settings page.
 
 == Changelog ==
 
