@@ -63,11 +63,6 @@ final class Cleaner_Gallery_Plugin {
 	 */
 	public function __construct() {
 
-		/* @todo - drop this */
-		global $cleaner_gallery;
-		$cleaner_gallery = new stdClass;
-		/* ===================== */
-
 		/* Set the properties needed by the plugin. */
 		add_action( 'plugins_loaded', array( $this, 'setup' ), 1 );
 
