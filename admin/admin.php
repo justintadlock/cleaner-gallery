@@ -4,7 +4,11 @@
  * WordPress admin rather than as a sub-item for another section in the admin.  It deals with the 
  * appearance of the site.
  *
- * @package CleanerGallery
+ * @package   CleanerGallery
+ * @author    Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2008 - 2013, Justin Tadlock
+ * @link      http://themehybrid.com/plugins/cleaner-gallery
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /* Plugin admin and settings setup. */

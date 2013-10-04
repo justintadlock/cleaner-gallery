@@ -1,4 +1,14 @@
 <?php
+/**
+ * Sets up custom filters for the plugin's output, particularly filters on the [gallery] shortcode output that 
+ * are custom to this plugin.
+ *
+ * @package   CleanerGallery
+ * @author    Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2008 - 2013, Justin Tadlock
+ * @link      http://themehybrid.com/plugins/cleaner-gallery
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
 
 /* Filter the gallery images with user options. */
 add_filter( 'cleaner_gallery_image', 'cleaner_gallery_plugin_gallery_image', 10, 4 );

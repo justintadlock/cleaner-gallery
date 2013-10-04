@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Cleaner Gallery
- * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
+ * Plugin URI: http://themehybrid.com/plugins/cleaner-gallery
  * Description: Replaces the default <code>[gallery]</code> shortcode with valid <abbr title="Hypertext Markup Language">HTML</abbr>5 markup and moves its inline styles to a proper stylesheet. Integrates with many Lightbox-type image scripts.
  * Version: 1.0.0-alpha-1
  * Author: Justin Tadlock
@@ -14,17 +14,20 @@
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package CleanerGallery
- * @version 1.0.0
- * @author Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2010, Justin Tadlock
- * @link http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @package   CleanerGallery
+ * @version   1.0.0
+ * @since     0.1.0
+ * @author    Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2008 - 2013, Justin Tadlock
+ * @link      http://themehybrid.com/plugins/cleaner-gallery
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /**
+ * Sets up the Cleaner Gallery plugin.
+ *
  * @since  1.0.0
-*/
+ */
 final class Cleaner_Gallery_Plugin {
 
 	/**
@@ -121,7 +124,7 @@ final class Cleaner_Gallery_Plugin {
 	public function i18n() {
 
 		/* Load the translation of the plugin. */
-	//	load_plugin_textdomain( 'custom-background-extended', false, 'custom-background-extended/languages' );
+		load_plugin_textdomain( 'cleaner-gallery', false, 'cleaner-gallery/languages' );
 	}
 
 	/**
