@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Cleaner Gallery
  * Plugin URI: http://justintadlock.com/archives/2008/04/13/cleaner-wordpress-gallery-plugin
- * Description: This plugin replaces the default gallery feature with a valid XHTML solution and offers support for multiple Lightbox-type image scripts.
+ * Description: Replaces the default <code>[gallery]</code> shortcode with valid <abbr title="Hypertext Markup Language">HTML</abbr>5 markup and moves its inline styles to a proper stylesheet. Integrates with many Lightbox-type image scripts.
  * Version: 1.0.0-alpha-1
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
