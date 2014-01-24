@@ -146,14 +146,14 @@ function cleaner_gallery( $output, $attr ) {
 		$output .= "\n\t\t\t\t\t\t<{$icontag} class='gallery-icon {$orientation}'>";
 
 		/* Get the image. */
-		if ( isset( $attr['link'] ) && 'file' == $attr['link'] ) 
-			$image = wp_get_attachment_link( $attachment->ID, $size, false, true );
-
-		elseif ( isset( $attr['link'] ) && 'none' == $attr['link'] )
+		if ( isset( $attr['link'] ) && 'none' == $attr['link'] )
 			$image = wp_get_attachment_image( $attachment->ID, $size, false );
 
-		else
+		elseif ( isset( $attr['link'] ) && '' == $attr['link'] )
 			$image = wp_get_attachment_link( $attachment->ID, $size, true, true );
+
+		else
+			$image = wp_get_attachment_link( $attachment->ID, $size, false, true );
 
 		/* Apply filters over the image itself. */
 		$output .= apply_filters( 'cleaner_gallery_image', $image, $attachment->ID, $attr, $cleaner_gallery_instance );
