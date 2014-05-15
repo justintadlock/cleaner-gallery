@@ -170,17 +170,17 @@ final class Cleaner_Gallery {
 		if ( $this->args['columns'] > 0 && $i % $this->args['columns'] !== 0 )
 			$output .= "\n\t\t\t</div>";
 
-		/* Wrap the gallery. */
-		$html  = "\n\t\t\t" . sprintf( "<div id='gallery-%s' class='gallery gallery-%s' itemscope itemptype='%s'>", "{$this->args['id']}-{$this->gallery_instance}", $this->args['id'], $this->get_gallery_itemtype() );
-		$html .= $output;
-		$html .= "\n\t\t\t</div><!-- .gallery -->\n";
-
 		/* Remove filters for Schema.org microdata support. */
 		remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'attachment_image_attributes' ) );
 		remove_filter( 'wp_get_attachment_link',             array( $this, 'get_attachment_link'         ) );
 
+		/* Gallery attributes. */
+		$gallery_attr  = sprintf( "id='%s'", esc_attr( $this->args['id'] ) . '-' . esc_attr( $this->gallery_instance ) );
+		$gallery_attr .= sprintf( " class='gallery gallery-%s'", esc_attr( $this->args['id'] ) );
+		$gallery_attr .= sprintf( " itemscope itemtype='%s'", esc_attr( $this->get_gallery_itemtype() ) );
+
 		/* Return out very nice, valid HTML gallery. */
-		return $html;
+		return "\n\t\t\t" . sprintf( '<div %s>', $gallery_attr ) . $output . "\n\t\t\t</div><!-- .gallery -->\n";
 	}
 
 	/**
