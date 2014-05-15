@@ -81,6 +81,9 @@ final class Cleaner_Gallery_Plugin {
 		/* Load the admin files. */
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
+		/* Check theme support for 'cleaner-gallery'. */
+		add_action( 'after_setup_theme', array( $this, 'theme_support' ), 12 );
+
 		/* Enqueue scripts and styles. */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
 	}
@@ -141,6 +144,21 @@ final class Cleaner_Gallery_Plugin {
 	}
 
 	/**
+	 * Checks for theme support of the 'cleaner-gallery' extension. This is used in the Hybrid 
+	 * Core framework, so we want to make sure we're only loading the plugin stylesheet if the 
+	 * theme is not handling styling for the gallery.
+	 *
+	 * @since  1.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function theme_support() {
+
+		if ( !current_theme_supports( 'cleaner-gallery' ) )
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+	}
+
+	/**
 	 * Enqueues scripts and styles on the front end.
 	 *
 	 * @since  1.0.0
@@ -154,9 +172,18 @@ final class Cleaner_Gallery_Plugin {
 
 		if ( cleaner_gallery_get_setting( 'thickbox_css' ) )
 			wp_enqueue_style( 'thickbox' );
+	}
 
-		if ( !current_theme_supports( 'cleaner-gallery' ) )
-			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.min.css", null, '20130526' );
+
+	/**
+	 * Enqueues the Cleaner Gallery stylesheet.
+	 *
+	 * @since  1.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.min.css", null, '20130526' );
 	}
 
 	/**
