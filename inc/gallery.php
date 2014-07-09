@@ -129,7 +129,7 @@ final class Cleaner_Gallery {
 		$children = array(
 			'post_status'      => 'inherit',
 			'post_type'        => 'attachment',
-			'post_mime_type'   => wp_parse_args( $this->args['mime_type'] ),
+			'post_mime_type'   => $this->args['mime_type'],
 			'order'            => $this->args['order'],
 			'orderby'          => $this->args['orderby'],
 			'exclude'          => $this->args['exclude'],
