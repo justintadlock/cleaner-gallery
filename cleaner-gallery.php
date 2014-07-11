@@ -83,7 +83,7 @@ final class Cleaner_Gallery_Plugin {
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
 		/* Check theme support for 'cleaner-gallery'. */
-		add_action( 'after_setup_theme', array( $this, 'theme_support' ), 12 );
+		add_action( 'after_setup_theme', array( $this, 'theme_support' ), 25 );
 
 		/* Enqueue scripts and styles. */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
