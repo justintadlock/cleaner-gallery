@@ -3,7 +3,7 @@
  * Plugin Name: Cleaner Gallery
  * Plugin URI:  http://themehybrid.com/plugins/cleaner-gallery
  * Description: Replaces the default <code>[gallery]</code> shortcode with valid <abbr title="Hypertext Markup Language">HTML</abbr>5 markup and moves its inline styles to a proper stylesheet. Integrates with many Lightbox-type image scripts.
- * Version:     1.1.0-alpha-1
+ * Version:     1.1.0
  * Author:      Justin Tadlock
  * Author URI:  http://justintadlock.com
  * Text Domain: cleaner-gallery
