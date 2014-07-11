@@ -1,11 +1,13 @@
 <?php
 /**
  * Plugin Name: Cleaner Gallery
- * Plugin URI: http://themehybrid.com/plugins/cleaner-gallery
+ * Plugin URI:  http://themehybrid.com/plugins/cleaner-gallery
  * Description: Replaces the default <code>[gallery]</code> shortcode with valid <abbr title="Hypertext Markup Language">HTML</abbr>5 markup and moves its inline styles to a proper stylesheet. Integrates with many Lightbox-type image scripts.
- * Version: 1.0.0
- * Author: Justin Tadlock
- * Author URI: http://justintadlock.com
+ * Version:     1.1.0
+ * Author:      Justin Tadlock
+ * Author URI:  http://justintadlock.com
+ * Text Domain: cleaner-gallery
+ * Domain Path: /languages
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
  * General Public License as published by the Free Software Foundation; either version 2 of the License, 
@@ -18,10 +20,9 @@
  * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  *
  * @package   CleanerGallery
- * @version   1.0.0
- * @since     0.1.0
+ * @version   1.1.0
  * @author    Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2013, Justin Tadlock
+ * @copyright Copyright (c) 2008 - 2014, Justin Tadlock
  * @link      http://themehybrid.com/plugins/cleaner-gallery
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -80,6 +81,9 @@ final class Cleaner_Gallery_Plugin {
 
 		/* Load the admin files. */
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
+
+		/* Check theme support for 'cleaner-gallery'. */
+		add_action( 'after_setup_theme', array( $this, 'theme_support' ), 25 );
 
 		/* Enqueue scripts and styles. */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
@@ -141,6 +145,21 @@ final class Cleaner_Gallery_Plugin {
 	}
 
 	/**
+	 * Checks for theme support of the 'cleaner-gallery' extension. This is used in the Hybrid 
+	 * Core framework, so we want to make sure we're only loading the plugin stylesheet if the 
+	 * theme is not handling styling for the gallery.
+	 *
+	 * @since  1.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function theme_support() {
+
+		if ( !current_theme_supports( 'cleaner-gallery' ) )
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+	}
+
+	/**
 	 * Enqueues scripts and styles on the front end.
 	 *
 	 * @since  1.0.0
@@ -154,9 +173,18 @@ final class Cleaner_Gallery_Plugin {
 
 		if ( cleaner_gallery_get_setting( 'thickbox_css' ) )
 			wp_enqueue_style( 'thickbox' );
+	}
 
-		if ( !current_theme_supports( 'cleaner-gallery' ) )
-			wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.min.css", null, '20130526' );
+
+	/**
+	 * Enqueues the Cleaner Gallery stylesheet.
+	 *
+	 * @since  1.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style( 'cleaner-gallery', "{$this->directory_uri}css/gallery.min.css", null, '20130526' );
 	}
 
 	/**
@@ -176,5 +204,3 @@ final class Cleaner_Gallery_Plugin {
 }
 
 Cleaner_Gallery_Plugin::get_instance();
-
-?>

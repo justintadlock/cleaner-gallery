@@ -7,6 +7,8 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 ## Features
 
 * Uses HTML5 `<fig>` and `<figcaption>` elements.
+* Integrates with [Schema.org microdata](http://schema.org).
+* Uses the `aria-describedby` attribute to make images + captions more accessible to users with disabilities.
 * Validates the invalid code that WordPress spits out.
 * Several options on how you want your gallery images.
 * Allows multiple galleries in a single post.
@@ -36,6 +38,14 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 18. [prettyPhoto](http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone)
 
 ## Changelog
+
+### Version 1.1.0 ###
+
+* Introduce the `Cleaner_Gallery` class, which allows for better code reuse and consolidates all the gallery functionality.
+* Add support for Schema.org microdata.
+* Added the `.gallery-columns-x` class.
+* Added the `.gallery-size-x` class.
+* Added `aria-describedby` attribute for images with captions for better accessibility.
 
 ### Version 1.0.0
 

@@ -3,9 +3,8 @@
 Contributors: greenshady
 Donate link: http://themehybrid.com/donate
 Tags: gallery, lightbox, slimbox, images, jquery, fancybox, shadowbox, thickbox, html5
-Requires at least: 3.6
-Tested up to: 3.7
-Stable tag: 1.0.0
+Requires at least: 3.9
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +19,8 @@ It does a bit more than that though.  It will integrate with many Lightbox-type 
 ### Features
 
 * Uses HTML5 `<fig>` and `<figcaption>` elements.
+* Integrates with [Schema.org microdata](http://schema.org).
+* Uses the `aria-describedby` attribute to make images + captions more accessible to users with disabilities.
 * Validates the invalid code that WordPress spits out.
 * Several options on how you want your gallery images.
 * Allows multiple galleries in a single post.
@@ -155,6 +156,14 @@ A demo can be found on the [Cleaner Gallery page](http://justintadlock.com/archi
 4. Cleaner Gallery settings page.
 
 == Changelog ==
+
+### Version 1.1.0 ###
+
+* Introduce the `Cleaner_Gallery` class, which allows for better code reuse and consolidates all the gallery functionality.
+* Add support for Schema.org microdata.
+* Added the `.gallery-columns-x` class.
+* Added the `.gallery-size-x` class.
+* Added `aria-describedby` attribute for images with captions for better accessibility.
 
 ### Version 1.0.0
 
