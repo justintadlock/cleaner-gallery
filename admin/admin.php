@@ -6,7 +6,7 @@
  *
  * @package   CleanerGallery
  * @author    Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2013, Justin Tadlock
+ * @copyright Copyright (c) 2008 - 2014, Justin Tadlock
  * @link      http://themehybrid.com/plugins/cleaner-gallery
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -272,5 +272,3 @@ function cleaner_gallery_plugin_row_meta( $meta, $file ) {
 function cleaner_gallery_load_settings_page() {
 	_deprecated_function( __FUNCTION__, '1.0.0', '' );
 }
-
-?>
