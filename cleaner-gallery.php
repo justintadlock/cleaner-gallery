@@ -21,9 +21,8 @@
  *
  * @package   CleanerGallery
  * @version   1.1.0
- * @since     0.1.0
  * @author    Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2013, Justin Tadlock
+ * @copyright Copyright (c) 2008 - 2014, Justin Tadlock
  * @link      http://themehybrid.com/plugins/cleaner-gallery
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -205,5 +204,3 @@ final class Cleaner_Gallery_Plugin {
 }
 
 Cleaner_Gallery_Plugin::get_instance();
-
-?>
