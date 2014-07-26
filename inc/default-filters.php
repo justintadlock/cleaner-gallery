@@ -54,6 +54,10 @@ function cleaner_gallery_get_setting( $option = '' ) {
 
 	$settings = get_option( 'cleaner_gallery_settings', cleaner_gallery_default_settings() );
 
+    if (false === array_key_exists($option, $settings)) {
+        return null;
+    }
+
 	return $settings[ $option ];
 }
 
