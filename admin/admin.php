@@ -128,7 +128,7 @@ function cleaner_gallery_settings_page() {
 	/* Set up an array of ordering options. */
 	$order_options = array( 
 		'ASC'  => __( 'Ascending',  'cleaner-gallery' ), 
-		'DESC' => __( 'Descending', 'cleaner_gallery' ) 
+		'DESC' => __( 'Descending', 'cleaner-gallery' ) 
 	);
 
 	/* Set up an array of supported Lightbox-type scripts the plugin supports. */

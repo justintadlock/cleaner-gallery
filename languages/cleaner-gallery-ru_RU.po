@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cleaner gallery\n"
+"POT-Creation-Date: 2015-01-26 10:49+0300\n"
+"PO-Revision-Date: 2015-01-26 11:12+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/admin.php:31 admin/admin.php:32
+msgid "Cleaner Gallery"
+msgstr "Cleaner Gallery"
+
+#: admin/admin.php:98
+msgid "Thumbnail"
+msgstr "Эскизный"
+
+#: admin/admin.php:99
+msgid "Medium"
+msgstr "Средний"
+
+#: admin/admin.php:100
+msgid "Large"
+msgstr "Большой"
+
+#: admin/admin.php:101
+msgid "Full"
+msgstr "Полный"
+
+#: admin/admin.php:111
+msgid "No image or page"
+msgstr "Без изображений"
+
+#: admin/admin.php:112
+msgid "Attachment Page"
+msgstr "Вложений"
+
+#: admin/admin.php:119
+msgid "Comment Count"
+msgstr "По счетчику комментариев"
+
+#: admin/admin.php:120
+msgid "Date"
+msgstr "По дате"
+
+#: admin/admin.php:121
+msgid "ID"
+msgstr "По ID"
+
+#: admin/admin.php:122
+msgid "Menu Order"
+msgstr "По порядку в меню"
+
+#: admin/admin.php:123
+msgid "None"
+msgstr "Неизвестно как"
+
+#: admin/admin.php:124
+msgid "Random"
+msgstr "Произвольно"
+
+#: admin/admin.php:125
+msgid "Title"
+msgstr "По заголовку"
+
+#: admin/admin.php:130
+msgid "Ascending"
+msgstr "По возрастанию"
+
+#: admin/admin.php:131
+msgid "Descending"
+msgstr "По убыванию"
+
+#: admin/admin.php:165
+msgid "Cleaner Gallery Settings"
+msgstr "Настройки Cleaner Gallery"
+
+#: admin/admin.php:167
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+#: admin/admin.php:176
+msgid "Default gallery settings"
+msgstr "Настройки галереи по умолчанию."
+
+#: admin/admin.php:178
+#, php-format
+msgid "Display %s size images by default."
+msgstr "По умолчанию показывать %s размер изображений."
+
+#: admin/admin.php:180
+#, php-format
+msgid "Images should link to %s by default."
+msgstr "По умолчанию изображения должны указывать на страницу %s."
+
+#: admin/admin.php:182
+#, php-format
+msgid "Galleries should be ordered by %s by default."
+msgstr "По умолчанию галереи должны быть упорядочены %s."
+
+#: admin/admin.php:184
+#, php-format
+msgid "Display gallery images in %s order by default."
+msgstr "По умолчанию изображения галереи должны быть упорядочены %s."
+
+#: admin/admin.php:187
+msgid "(These settings may be overriden for individual galleries.)"
+msgstr ""
+"(Эти настройки могут быть перезаписаны индивидуальными для каждой "
+"галереи)."
+
+#: admin/admin.php:193
+msgid "Image caption settings"
+msgstr "Настройки заголовка изображения"
+
+#: admin/admin.php:196
+msgid "Completely remove image captions (overrules other caption settings)."
+msgstr "Полностью убрать заголовок (отменяет другие настройки)."
+
+#: admin/admin.php:199
+msgid "Use the image title as a caption if there is no caption available."
+msgstr ""
+"Использовать заголовок изображения если заголовок не определен явно."
+
+#: admin/admin.php:204
+msgid "Script and style settings"
+msgstr "Настройки стилей и скриптов"
+
+#: admin/admin.php:207
+msgid "Load the Thickbox JavaScript (included with WordPress)."
+msgstr "Загружать JavaScript Thickbox (включен в WordPress)."
+
+#: admin/admin.php:210
+msgid "Load the Thickbox stylesheet (included with WordPress)."
+msgstr "Загружать стили Thickbox (включено в WordPress)."
+
+#: admin/admin.php:215
+msgid "External image script"
+msgstr "Внешний скрипт изображения"
+
+#: admin/admin.php:225
+msgid ""
+"The use, installation, and configuration of third-party image scripts are "
+"not supported by the Cleaner Gallery plugin developer. Please contact the "
+"image script developer for help using your preferred script."
+msgstr ""
+"Использование, установка и настройка внешних скриптов не поддерживается "
+"разработчиками Cleaner Gallery. Пожалуйста обращайтесь непосредственно к "
+"разработчику предпочитаемого скрипта."
+
+#: admin/admin.php:231
+msgid "Like this plugin?"
+msgstr "Нравится плагин?"
+
+#: admin/admin.php:233
+msgid "Here's how you can give back:"
+msgstr "Как можно нам помочь:"
+
+#: admin/admin.php:235
+msgid "Give the plugin a good rating."
+msgstr "Дайте хорошую оценку плагина."
+
+#: admin/admin.php:236
+msgid "Donate to the project."
+msgstr "Пожертвуйте на развитие проекта."
+
+#: admin/admin.php:242
+msgid "Update Settings"
+msgstr "Обновить настройки"
+
+#: admin/admin.php:260
+msgid "Plugin support"
+msgstr "Поддержка плагина"
+
+#: admin/admin.php:261
+msgid "Rate plugin"
+msgstr "Оценить плагин"
+
+#: admin/admin.php:262
+msgid "Donate"
+msgstr "Пожертвовать"
+
+#: inc/default-filters.php:68
+msgid "Colorbox"
+msgstr "Colorbox"
+
+#: inc/default-filters.php:69
+msgid "FancyBox"
+msgstr "FancyBox"
+
+#: inc/default-filters.php:70
+msgid "FancyZoom"
+msgstr "FancyZoom"
+
+#: inc/default-filters.php:71
+msgid "Floatbox"
+msgstr "Floatbox"
+
+#: inc/default-filters.php:72
+msgid "GreyBox"
+msgstr "GreyBox"
+
+#: inc/default-filters.php:73
+msgid "jQuery Lightbox"
+msgstr "jQuery Lightbox"
+
+#: inc/default-filters.php:74
+msgid "jQuery Lightbox Plugin"
+msgstr "Плагин jQuery Lightbox"
+
+#: inc/default-filters.php:75
+msgid "jQuery Lightbox (Balupton)"
+msgstr "jQuery Lightbox (Balupton)"
+
+#: inc/default-filters.php:76
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: inc/default-filters.php:77
+msgid "Lightview"
+msgstr "Lightview"
+
+#: inc/default-filters.php:78
+msgid "LightWindow"
+msgstr "LightWindow"
+
+#: inc/default-filters.php:79
+msgid "Lytebox"
+msgstr "Lytebox"
+
+#: inc/default-filters.php:80
+msgid "prettyPhoto"
+msgstr "prettyPhoto"
+
+#: inc/default-filters.php:81
+msgid "Shadowbox"
+msgstr "Shadowbox"
+
+#: inc/default-filters.php:82
+msgid "Shutter Reloaded"
+msgstr "Shutter Reloaded"
+
+#: inc/default-filters.php:83
+msgid "Slimbox"
+msgstr "Slimbox"
+
+#: inc/default-filters.php:84
+msgid "Thickbox"
+msgstr "Thickbox"
