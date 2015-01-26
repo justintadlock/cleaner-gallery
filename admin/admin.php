@@ -59,11 +59,11 @@ function cleaner_gallery_register_settings() {
  */
 function cleaner_gallery_validate_settings( $settings ) {
 
-	$setttings['size']         = wp_filter_post_kses( $settings['size']         );
-	$setttings['image_link']   = wp_filter_post_kses( $settings['image_link']   );
-	$setttings['orderby']      = wp_filter_post_kses( $settings['orderby']      );
-	$setttings['order']        = wp_filter_post_kses( $settings['order']        );
-	$setttings['image_script'] = wp_filter_post_kses( $settings['image_script'] );
+	$settings['size']         = wp_filter_post_kses( $settings['size']         );
+	$settings['image_link']   = wp_filter_post_kses( $settings['image_link']   );
+	$settings['orderby']      = wp_filter_post_kses( $settings['orderby']      );
+	$settings['order']        = wp_filter_post_kses( $settings['order']        );
+	$settings['image_script'] = wp_filter_post_kses( $settings['image_script'] );
 
 	$settings['caption_remove'] = isset( $settings['caption_remove'] ) ? 1 : 0;
 	$settings['caption_title']  = isset( $settings['caption_title'] )  ? 1 : 0;
